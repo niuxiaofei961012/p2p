@@ -5,5 +5,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/success1988/exam_cloud.git
-          search-paths:  config_repo
+          uri: https://github.com/niuxiaofei961012/p2p.git
+          search-paths:  p2p_config_repo
