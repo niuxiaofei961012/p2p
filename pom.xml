@@ -11,9 +11,10 @@
         <module>p2p_config_server</module>
         <module>p2p_gateway_server</module>
         <module>p2p_eureka_server</module>
-        <module>p2p_consumer_service</module>
+        <module>p2p_account_service</module>
         <module>p2p_api</module>
-        <module>p2p_provider_service</module>
+        <module>p2p_user_service</module>
+        <module>p2p_mybatis_generator</module>
     </modules>
 
     <packaging>pom</packaging>

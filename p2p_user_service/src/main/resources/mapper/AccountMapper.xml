@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.entity.Account" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="accoubt_avbalance" property="accoubtAvbalance" jdbcType="DECIMAL" />
+    <result column="accoubt_frobalance" property="accoubtFrobalance" jdbcType="DECIMAL" />
+    <result column="unreceive_principal" property="unreceivePrincipal" jdbcType="DECIMAL" />
+    <result column="unreceive_interest" property="unreceiveInterest" jdbcType="DECIMAL" />
+    <result column="unreceive_money" property="unreceiveMoney" jdbcType="DECIMAL" />
+    <result column="credit_limit" property="creditLimit" jdbcType="DECIMAL" />
+    <result column="remain_credit_limit" property="remainCreditLimit" jdbcType="DECIMAL" />
+    <result column="trade_password" property="tradePassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, accoubt_avbalance, accoubt_frobalance, unreceive_principal, unreceive_interest, 
+    unreceive_money, credit_limit, remain_credit_limit, trade_password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.entity.Account" >
+    insert into t_account (id, accoubt_avbalance, accoubt_frobalance, 
+      unreceive_principal, unreceive_interest, 
+      unreceive_money, credit_limit, remain_credit_limit, 
+      trade_password)
+    values (#{id,jdbcType=INTEGER}, #{accoubtAvbalance,jdbcType=DECIMAL}, #{accoubtFrobalance,jdbcType=DECIMAL}, 
+      #{unreceivePrincipal,jdbcType=DECIMAL}, #{unreceiveInterest,jdbcType=DECIMAL}, 
+      #{unreceiveMoney,jdbcType=DECIMAL}, #{creditLimit,jdbcType=DECIMAL}, #{remainCreditLimit,jdbcType=DECIMAL}, 
+      #{tradePassword,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.entity.Account" >
+    insert into t_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="accoubtAvbalance != null" >
+        accoubt_avbalance,
+      </if>
+      <if test="accoubtFrobalance != null" >
+        accoubt_frobalance,
+      </if>
+      <if test="unreceivePrincipal != null" >
+        unreceive_principal,
+      </if>
+      <if test="unreceiveInterest != null" >
+        unreceive_interest,
+      </if>
+      <if test="unreceiveMoney != null" >
+        unreceive_money,
+      </if>
+      <if test="creditLimit != null" >
+        credit_limit,
+      </if>
+      <if test="remainCreditLimit != null" >
+        remain_credit_limit,
+      </if>
+      <if test="tradePassword != null" >
+        trade_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accoubtAvbalance != null" >
+        #{accoubtAvbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="accoubtFrobalance != null" >
+        #{accoubtFrobalance,jdbcType=DECIMAL},
+      </if>
+      <if test="unreceivePrincipal != null" >
+        #{unreceivePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="unreceiveInterest != null" >
+        #{unreceiveInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="unreceiveMoney != null" >
+        #{unreceiveMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLimit != null" >
+        #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="remainCreditLimit != null" >
+        #{remainCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="tradePassword != null" >
+        #{tradePassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.entity.Account" >
+    update t_account
+    <set >
+      <if test="accoubtAvbalance != null" >
+        accoubt_avbalance = #{accoubtAvbalance,jdbcType=DECIMAL},
+      </if>
+      <if test="accoubtFrobalance != null" >
+        accoubt_frobalance = #{accoubtFrobalance,jdbcType=DECIMAL},
+      </if>
+      <if test="unreceivePrincipal != null" >
+        unreceive_principal = #{unreceivePrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="unreceiveInterest != null" >
+        unreceive_interest = #{unreceiveInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="unreceiveMoney != null" >
+        unreceive_money = #{unreceiveMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="creditLimit != null" >
+        credit_limit = #{creditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="remainCreditLimit != null" >
+        remain_credit_limit = #{remainCreditLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="tradePassword != null" >
+        trade_password = #{tradePassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.p2p.entity.Account" >
+    update t_account
+    set accoubt_avbalance = #{accoubtAvbalance,jdbcType=DECIMAL},
+      accoubt_frobalance = #{accoubtFrobalance,jdbcType=DECIMAL},
+      unreceive_principal = #{unreceivePrincipal,jdbcType=DECIMAL},
+      unreceive_interest = #{unreceiveInterest,jdbcType=DECIMAL},
+      unreceive_money = #{unreceiveMoney,jdbcType=DECIMAL},
+      credit_limit = #{creditLimit,jdbcType=DECIMAL},
+      remain_credit_limit = #{remainCreditLimit,jdbcType=DECIMAL},
+      trade_password = #{tradePassword,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

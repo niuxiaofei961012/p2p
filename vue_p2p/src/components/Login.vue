@@ -44,17 +44,17 @@
           data:this.loginForm
         }).then(function (res) {
           if(res){
-            alert(res)
+            self.$router.push("/common/"+res.data.id)
           }
-          /*if(res.data.mes){
-            window.localStorage.setItem("user",res.data.user.userId);
-            self.$router.push("list")
-          }else if(res.data.nameMes){
-            self.$message(res.data.nameMes)
-          }else{
-            self.$message(res.data.passMes)
-          }*/
         })
+        /*if(res.data.mes){
+          window.localStorage.setItem("user",res.data.user.userId);
+          self.$router.push("list")
+        }else if(res.data.nameMes){
+          self.$message(res.data.nameMes)
+        }else{
+          self.$message(res.data.passMes)
+        }*/
       }
     },
     created(){

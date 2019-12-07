@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/vue_p2p/vue_p2p.iml" filepath="$PROJECT_DIR$/vue_p2p/vue_p2p.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vue_p2p_back/vue_p2p_back.iml" filepath="$PROJECT_DIR$/vue_p2p_back/vue_p2p_back.iml" />
     </modules>
   </component>
 </project>
