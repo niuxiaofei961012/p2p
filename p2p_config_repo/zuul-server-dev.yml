@@ -8,6 +8,7 @@ eureka:
       defaultZone: http://localhost:10000/eureka
 zuul:
   #  prefix: /api/
+  sensitive-headers:
   ignored-services: '*'
   routes:
     #    user-consumer: /fei/**
