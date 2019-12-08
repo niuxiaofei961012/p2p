@@ -23,7 +23,7 @@ zuul:
     behind-proxy: true #代理之后
     default-policy: #针对所有的路由配置的策略
       limit: 10 #请求数量限制
-      quota: 1000 #请求时间限制（毫秒）
+      quota: 5000 #请求时间限制（毫秒）
       refresh-interval: 60 # 刷新时间窗口的时间（秒）
       type: #可选 限流方式
       - user
