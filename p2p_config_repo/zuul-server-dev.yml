@@ -1,0 +1,50 @@
+server:
+  port: 10010
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+eureka:
+  client:
+    fetch-registry: true #不从注册中心拉取注册表
+    service-url:
+      defaultZone: http://localhost:10000/eureka
+#  ignored-services: '*'  #？
+#    user:
+#      serviceId: user-service
+#      path: /user_service/**
+zuul:
+  #  prefix: /api/
+  ignored-services: '*'
+  routes:
+    #    user-consumer: /fei/**
+    user-service:
+      serviceId: user-service
+      path: /p2p_user_service/**
+    account-service:
+      serviceId: account-service
+      path: /p2p_account_service/**
+  ratelimit:
+    key-prefix: user-service #请求的key的前缀
+    enabled: true
+    behind-proxy: true #代理之后
+    default-policy: #针对所有的路由配置的策略
+      limit: 10 #请求数量限制
+      quota: 1000 #请求时间限制（毫秒）
+      refresh-interval: 60 # 刷新时间窗口的时间（秒）
+      type: #可选 限流方式
+      - user
+      - origin
+      - url
+#      strip-prefix: false
+#
+#zuul:
+#  ignored-services: '*'
+#  routes:
+#    consumer:
+#      url: http://localhost:8081/
+#      path: /niu/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

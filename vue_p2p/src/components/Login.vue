@@ -20,6 +20,7 @@
 <script>
   const axios = require("axios");
   const baseURL  = "http://back.p2p.com/";
+  axios.default.withCredentials = true;
   export default {
     name: "Login",
     data(){
@@ -29,6 +30,7 @@
     },
     methods:{
       login(){
+        this.$router.push("/home/")
         if(this.loginForm.userUsername==null){
           this.$message("请输入用户名")
           return;
@@ -44,7 +46,6 @@
           data:this.loginForm
         }).then(function (res) {
           if(res){
-            self.$router.push("/common/"+res.data.id)
           }
         })
         /*if(res.data.mes){

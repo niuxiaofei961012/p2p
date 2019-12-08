@@ -10,5 +10,6 @@
     <file url="file://$PROJECT_DIR$/p2p_gateway_server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/p2p_mybatis_generator" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/p2p_user_service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p_zuul_server" charset="UTF-8" />
   </component>
 </project>

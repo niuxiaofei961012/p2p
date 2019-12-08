@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>p2p_config_server</module>
-        <module>p2p_gateway_server</module>
+        <module>p2p_zuul_server</module>
         <module>p2p_eureka_server</module>
         <module>p2p_account_service</module>
         <module>p2p_api</module>
