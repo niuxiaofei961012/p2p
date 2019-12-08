@@ -4,13 +4,8 @@ server:
     allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
 eureka:
   client:
-    fetch-registry: true #不从注册中心拉取注册表
     service-url:
       defaultZone: http://localhost:10000/eureka
-#  ignored-services: '*'  #？
-#    user:
-#      serviceId: user-service
-#      path: /user_service/**
 zuul:
   #  prefix: /api/
   ignored-services: '*'
@@ -18,10 +13,10 @@ zuul:
     #    user-consumer: /fei/**
     user-service:
       serviceId: user-service
-      path: /p2p_user_service/**
+      path: /p2p/user_service/**
     account-service:
       serviceId: account-service
-      path: /p2p_account_service/**
+      path: /p2p/account_service/**
   ratelimit:
     key-prefix: user-service #请求的key的前缀
     enabled: true
@@ -34,15 +29,6 @@ zuul:
       - user
       - origin
       - url
-#      strip-prefix: false
-#
-#zuul:
-#  ignored-services: '*'
-#  routes:
-#    consumer:
-#      url: http://localhost:8081/
-#      path: /niu/**
-
 management:
   endpoints:
     web:
