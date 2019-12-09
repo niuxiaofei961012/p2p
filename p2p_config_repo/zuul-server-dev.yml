@@ -18,31 +18,31 @@ zuul:
     account-service:
       serviceId: account-service
       path: /p2p/account_service/**
-  ratelimit:
-    key-prefix: user-service #请求的key的前缀
-    enabled: true
-    behind-proxy: true #代理之后
-    default-policy: #针对所有的路由配置的策略
-      limit: 10 #请求数量限制
-      quota: 5000 #请求时间限制（毫秒）
-      refresh-interval: 60 # 刷新时间窗口的时间（秒）
-      type: #可选 限流方式
-      - user
-      - origin
-      - url
-ribbon:
-  ConnectTimeout: 5000 # 连接超时时间(ms)
-  ReadTimeout: 2000 # 通信超时时间(ms)
-  OkToRetryOnAllOperations: true # 是否对所有操作重试
-  MaxAutoRetriesNextServer: 10 # 同一服务不同实例的重试次数
-  MaxAutoRetries: 10 # 同一实例的重试次数
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 6000 # 熔断超时时长：6000ms
+#  ratelimit:
+#    key-prefix: user-service #请求的key的前缀
+#    enabled: true
+#    behind-proxy: true #代理之后
+#    default-policy: #针对所有的路由配置的策略
+#      limit: 10 #请求数量限制
+#      quota: 5000 #请求时间限制（毫秒）
+#      refresh-interval: 60 # 刷新时间窗口的时间（秒）
+#      type: #可选 限流方式
+#      - user
+#      - origin
+#      - url
+#ribbon:
+#  ConnectTimeout: 5000 # 连接超时时间(ms)
+#  ReadTimeout: 2000 # 通信超时时间(ms)
+#  OkToRetryOnAllOperations: true # 是否对所有操作重试
+#  MaxAutoRetriesNextServer: 10 # 同一服务不同实例的重试次数
+#  MaxAutoRetries: 10 # 同一实例的重试次数
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 6000 # 熔断超时时长：6000ms
 management:
   endpoints:
     web:
