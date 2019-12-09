@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="p2p_account_service" />
         <module name="p2p_api" />
+        <module name="p2p_bid_service" />
         <module name="p2p_config_server" />
         <module name="p2p_consumer_service" />
         <module name="p2p_eureka_server" />
