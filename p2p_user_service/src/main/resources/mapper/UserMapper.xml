@@ -36,15 +36,18 @@
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.p2p.entity.User" >
-    insert into t_user (id, user_username, user_password, 
+  <insert id="insert" parameterType="com.p2p.entity.User" useGeneratedKeys="true" keyProperty="id">
+    <selectKey keyProperty="id" order="AFTER" resultType="int">
+      select LAST_INSERT_ID()
+    </selectKey>
+    insert into t_user (id, user_username, user_password,
       user_phone, user_microblog, user_presenter, 
       user_vip, user_status, user_email, 
       user_reg_time, user_address)
     values (#{id,jdbcType=INTEGER}, #{userUsername,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
       #{userPhone,jdbcType=VARCHAR}, #{userMicroblog,jdbcType=VARCHAR}, #{userPresenter,jdbcType=VARCHAR}, 
       #{userVip,jdbcType=INTEGER}, #{userStatus,jdbcType=INTEGER}, #{userEmail,jdbcType=VARCHAR}, 
-      #{userRegTime,jdbcType=TIMESTAMP}, #{userAddress,jdbcType=VARCHAR})
+      now(), #{userAddress,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.p2p.entity.User" >
     insert into t_user

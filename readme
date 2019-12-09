@@ -1,0 +1,11 @@
+eureka-server:10000
+config-server:7001
+zuul-service:10010
+user-service:8081
+account-service:8082
+loan-service:8083
+
+vue_p2p:9090
+vue_p2p_back:9191
+
+

@@ -5,16 +5,8 @@
 </template>
 
 <script>
-import HeadNav from '@/components/common/HeadNav'
-import Footer from  '@/components/common/footer'
-import Head from  '@/components/common/Head'
 export default {
   name: 'App',
-  components:{
-    HeadNav,
-    Footer,
-    Head
-  }
 }
 </script>
 

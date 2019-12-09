@@ -2,16 +2,17 @@
   <el-main>
     <h3>请输入用户名密码登录</h3>
     <el-form :inline="true" :model="loginForm" class="demo-form-inline">
-      <el-form-item label="用户名">
+      <el-form-item label="请输入账号">
         <el-input v-model="loginForm.userUsername" placeholder="用户名"></el-input>
       </el-form-item>
       <br>
-      <el-form-item label="密码">
+      <el-form-item label="请输入密码">
         <el-input v-model="loginForm.userPassword" placeholder="密码" type="password"></el-input>
       </el-form-item>
       <br>
       <el-form-item>
         <el-button type="primary" @click="login">登录</el-button>
+        <el-button type="primary" @click="register">注册</el-button>
       </el-form-item>
     </el-form>
   </el-main>
@@ -19,18 +20,18 @@
 
 <script>
   const axios = require("axios");
-  const baseURL  = "http://back.p2p.com/";
-  axios.default.withCredentials = true;
+  const baseURL  = "http://localhost:10010/p2p/user_service/";
+  axios.defaults.withCredentials = true;
   export default {
     name: "Login",
     data(){
       return {
-        loginForm:{}
+        loginForm:{},
+        User:{}
       }
     },
     methods:{
       login(){
-        this.$router.push("/home/")
         if(this.loginForm.userUsername==null){
           this.$message("请输入用户名")
           return;
@@ -45,17 +46,24 @@
           method:"post",
           data:this.loginForm
         }).then(function (res) {
-          if(res){
+          if(res.data.ok){
+            console.log(res)
+            self.User = res.data.ok
+            let user = JSON.parse(self.User);
+            window.localStorage.setItem("userId",user.id);
+            window.localStorage.setItem("userName",user.userUsername);
+            self.$message("登录成功")
+            self.$router.push("/home/");
+          }else if(res.data.userName){
+            self.$message(res.data.userName)
+          }else{
+            self.$message(res.data.userPassword)
           }
         })
-        /*if(res.data.mes){
-          window.localStorage.setItem("user",res.data.user.userId);
-          self.$router.push("list")
-        }else if(res.data.nameMes){
-          self.$message(res.data.nameMes)
-        }else{
-          self.$message(res.data.passMes)
-        }*/
+
+      },
+      register(){
+        this.$router.push("/register/");
       }
     },
     created(){

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.dao.AccountFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.entity.AccountFlow" >
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="record_date" property="recordDate" jdbcType="TIMESTAMP" />
+    <result column="record_handletype" property="recordHandletype" jdbcType="VARCHAR" />
+    <result column="record_handlemoney" property="recordHandlemoney" jdbcType="DECIMAL" />
+    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="record_surplus" property="recordSurplus" jdbcType="DECIMAL" />
+    <result column="record_notes" property="recordNotes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    record_id, record_date, record_handletype, record_handlemoney, account_id, record_surplus, 
+    record_notes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_account_flow
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_account_flow
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.entity.AccountFlow" >
+    insert into t_account_flow (record_id, record_date, record_handletype, 
+      record_handlemoney, account_id, record_surplus, 
+      record_notes)
+    values (#{recordId,jdbcType=INTEGER}, #{recordDate,jdbcType=TIMESTAMP}, #{recordHandletype,jdbcType=VARCHAR}, 
+      #{recordHandlemoney,jdbcType=DECIMAL}, #{accountId,jdbcType=INTEGER}, #{recordSurplus,jdbcType=DECIMAL}, 
+      #{recordNotes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.entity.AccountFlow" >
+    insert into t_account_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        record_id,
+      </if>
+      <if test="recordDate != null" >
+        record_date,
+      </if>
+      <if test="recordHandletype != null" >
+        record_handletype,
+      </if>
+      <if test="recordHandlemoney != null" >
+        record_handlemoney,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="recordSurplus != null" >
+        record_surplus,
+      </if>
+      <if test="recordNotes != null" >
+        record_notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="recordDate != null" >
+        #{recordDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordHandletype != null" >
+        #{recordHandletype,jdbcType=VARCHAR},
+      </if>
+      <if test="recordHandlemoney != null" >
+        #{recordHandlemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="recordSurplus != null" >
+        #{recordSurplus,jdbcType=DECIMAL},
+      </if>
+      <if test="recordNotes != null" >
+        #{recordNotes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.entity.AccountFlow" >
+    update t_account_flow
+    <set >
+      <if test="recordDate != null" >
+        record_date = #{recordDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recordHandletype != null" >
+        record_handletype = #{recordHandletype,jdbcType=VARCHAR},
+      </if>
+      <if test="recordHandlemoney != null" >
+        record_handlemoney = #{recordHandlemoney,jdbcType=DECIMAL},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="recordSurplus != null" >
+        record_surplus = #{recordSurplus,jdbcType=DECIMAL},
+      </if>
+      <if test="recordNotes != null" >
+        record_notes = #{recordNotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.p2p.entity.AccountFlow" >
+    update t_account_flow
+    set record_date = #{recordDate,jdbcType=TIMESTAMP},
+      record_handletype = #{recordHandletype,jdbcType=VARCHAR},
+      record_handlemoney = #{recordHandlemoney,jdbcType=DECIMAL},
+      account_id = #{accountId,jdbcType=INTEGER},
+      record_surplus = #{recordSurplus,jdbcType=DECIMAL},
+      record_notes = #{recordNotes,jdbcType=VARCHAR}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,17 +1,15 @@
 package com.p2p.controller;
 
 import com.p2p.entity.LoginVO;
+import com.p2p.entity.User;
 import com.p2p.service.LoginService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
-@CrossOrigin(allowCredentials = "true")
 @RequestMapping("p2p")
 @RestController
 public class LoginController {
@@ -24,9 +22,18 @@ public class LoginController {
      * @return
      */
     @RequestMapping("login")
-    public String login(@RequestBody LoginVO loginVO, HttpServletRequest request, HttpServletResponse response){
-
+    public Map<String,Object> login(@RequestBody LoginVO loginVO, HttpServletRequest request, HttpServletResponse response){
         return loginService.login(loginVO,request,response);
+    }
+
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
+    @PostMapping("register")
+    public User register(@RequestBody User user){
+        return loginService.register(user);
     }
 
 }

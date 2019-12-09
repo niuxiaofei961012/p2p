@@ -15,6 +15,7 @@
         <module>p2p_api</module>
         <module>p2p_user_service</module>
         <module>p2p_mybatis_generator</module>
+        <module>p2p_loan_service</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.dao.ReturnPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.entity.ReturnPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
+    <result column="loan_name" property="loanName" jdbcType="VARCHAR" />
+    <result column="phase" property="phase" jdbcType="VARCHAR" />
+    <result column="return_user_id" property="returnUserId" jdbcType="INTEGER" />
+    <result column="return_money" property="returnMoney" jdbcType="DECIMAL" />
+    <result column="return_principal" property="returnPrincipal" jdbcType="DECIMAL" />
+    <result column="return_interest" property="returnInterest" jdbcType="DECIMAL" />
+    <result column="return_deadline" property="returnDeadline" jdbcType="TIMESTAMP" />
+    <result column="return_time" property="returnTime" jdbcType="TIMESTAMP" />
+    <result column="return_status" property="returnStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, borrow_id, loan_name, phase, return_user_id, return_money, return_principal, 
+    return_interest, return_deadline, return_time, return_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_return_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_return_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.entity.ReturnPlan" >
+    insert into t_return_plan (id, borrow_id, loan_name, 
+      phase, return_user_id, return_money, 
+      return_principal, return_interest, return_deadline, 
+      return_time, return_status)
+    values (#{id,jdbcType=INTEGER}, #{borrowId,jdbcType=INTEGER}, #{loanName,jdbcType=VARCHAR}, 
+      #{phase,jdbcType=VARCHAR}, #{returnUserId,jdbcType=INTEGER}, #{returnMoney,jdbcType=DECIMAL}, 
+      #{returnPrincipal,jdbcType=DECIMAL}, #{returnInterest,jdbcType=DECIMAL}, #{returnDeadline,jdbcType=TIMESTAMP}, 
+      #{returnTime,jdbcType=TIMESTAMP}, #{returnStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.entity.ReturnPlan" >
+    insert into t_return_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="borrowId != null" >
+        borrow_id,
+      </if>
+      <if test="loanName != null" >
+        loan_name,
+      </if>
+      <if test="phase != null" >
+        phase,
+      </if>
+      <if test="returnUserId != null" >
+        return_user_id,
+      </if>
+      <if test="returnMoney != null" >
+        return_money,
+      </if>
+      <if test="returnPrincipal != null" >
+        return_principal,
+      </if>
+      <if test="returnInterest != null" >
+        return_interest,
+      </if>
+      <if test="returnDeadline != null" >
+        return_deadline,
+      </if>
+      <if test="returnTime != null" >
+        return_time,
+      </if>
+      <if test="returnStatus != null" >
+        return_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="borrowId != null" >
+        #{borrowId,jdbcType=INTEGER},
+      </if>
+      <if test="loanName != null" >
+        #{loanName,jdbcType=VARCHAR},
+      </if>
+      <if test="phase != null" >
+        #{phase,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUserId != null" >
+        #{returnUserId,jdbcType=INTEGER},
+      </if>
+      <if test="returnMoney != null" >
+        #{returnMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="returnPrincipal != null" >
+        #{returnPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="returnInterest != null" >
+        #{returnInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="returnDeadline != null" >
+        #{returnDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnTime != null" >
+        #{returnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnStatus != null" >
+        #{returnStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.entity.ReturnPlan" >
+    update t_return_plan
+    <set >
+      <if test="borrowId != null" >
+        borrow_id = #{borrowId,jdbcType=INTEGER},
+      </if>
+      <if test="loanName != null" >
+        loan_name = #{loanName,jdbcType=VARCHAR},
+      </if>
+      <if test="phase != null" >
+        phase = #{phase,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUserId != null" >
+        return_user_id = #{returnUserId,jdbcType=INTEGER},
+      </if>
+      <if test="returnMoney != null" >
+        return_money = #{returnMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="returnPrincipal != null" >
+        return_principal = #{returnPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="returnInterest != null" >
+        return_interest = #{returnInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="returnDeadline != null" >
+        return_deadline = #{returnDeadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnTime != null" >
+        return_time = #{returnTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnStatus != null" >
+        return_status = #{returnStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.p2p.entity.ReturnPlan" >
+    update t_return_plan
+    set borrow_id = #{borrowId,jdbcType=INTEGER},
+      loan_name = #{loanName,jdbcType=VARCHAR},
+      phase = #{phase,jdbcType=VARCHAR},
+      return_user_id = #{returnUserId,jdbcType=INTEGER},
+      return_money = #{returnMoney,jdbcType=DECIMAL},
+      return_principal = #{returnPrincipal,jdbcType=DECIMAL},
+      return_interest = #{returnInterest,jdbcType=DECIMAL},
+      return_deadline = #{returnDeadline,jdbcType=TIMESTAMP},
+      return_time = #{returnTime,jdbcType=TIMESTAMP},
+      return_status = #{returnStatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

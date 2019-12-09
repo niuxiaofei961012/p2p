@@ -3,9 +3,14 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import PersonalCenter from '@/components/personCenter/PersonalCenter'
 import Home from '@/components/home/Home'
-import Account from '@/components/personCenter/acccount/Account'
+import Register from '@/components/Register'
 
 Vue.use(Router)
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 export default new Router({
   routes: [
@@ -13,6 +18,11 @@ export default new Router({
       path: '/',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register,
     },
     {
       path: '/home',
@@ -23,16 +33,10 @@ export default new Router({
           path: '/personalCenter',
           component: PersonalCenter,
           name: 'PersonalCenter',
-          children: [
-            {
-              path: '/account',
-              name: 'Account',
-              component: Account,
-            },
-          ]
         },
       ]
     },
 
-  ]
+  ],
+  mode:'history'
 })
