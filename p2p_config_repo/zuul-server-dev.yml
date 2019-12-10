@@ -15,9 +15,16 @@ zuul:
     user-service:
       serviceId: user-service
       path: /p2p/user_service/**
+
     account-service:
       serviceId: account-service
       path: /p2p/account_service/**
+
+    loan-service:
+      serviceId: loan-service
+      path: /p2p/loan_service/**
+
+
 #  ratelimit:
 #    key-prefix: user-service #请求的key的前缀
 #    enabled: true
