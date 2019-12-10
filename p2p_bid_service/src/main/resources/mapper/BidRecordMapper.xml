@@ -14,6 +14,17 @@
   <sql id="Base_Column_List" >
     bid_id, borrow_id, borrow_name, bid_money, year_rate, bid_time, bid_user_id, borrow_user_id
   </sql>
+  <select id="getBidRecordList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from t_bid_record
+    <where>
+      <if test="bidRecordDTO.startTime!=null">
+        bid_time &gt; #{bidRecordDTO.startTime}
+      </if>
+      <if test="bidRecordDTO.endTime!=null">
+        bid_time &lt; #{bidRecordDTO.endTime}
+    </where>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

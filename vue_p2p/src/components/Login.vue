@@ -32,6 +32,7 @@
     },
     methods:{
       login(){
+        this.$router.push("/home/");
         if(this.loginForm.userUsername==null){
           this.$message("请输入用户名")
           return;

@@ -35,7 +35,7 @@
         switch (key) {
           case 1: self.$router.push('/home');break;
           case 2:
-          case 3:
+          case 3: self.$router.push('/borrow');break;
           case 4: self.$router.push('/personalCenter');break;
           case 5:
           case 6:

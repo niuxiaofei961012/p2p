@@ -4,6 +4,7 @@ import Login from '@/components/Login'
 import PersonalCenter from '@/components/personCenter/PersonalCenter'
 import Home from '@/components/home/Home'
 import Register from '@/components/Register'
+import Borrow from '@/components/borrow/Borrow';
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
           path: '/personalCenter',
           component: PersonalCenter,
           name: 'PersonalCenter',
+        },
+        {
+          path: '/borrow',
+          component: Borrow,
+          name: 'Borrow',
         },
       ]
     },

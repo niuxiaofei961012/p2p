@@ -47,7 +47,9 @@
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<!-- 指定数据库表 -->
-		<table domainObjectName="User" tableName="t_user" enableDeleteByExample="false" enableCountByExample="false"
+		<table domainObjectName="LoanMark" tableName="t_loan_mark" enableDeleteByExample="false" enableCountByExample="false"
+			   enableUpdateByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+		<!--<table domainObjectName="User" tableName="t_user" enableDeleteByExample="false" enableCountByExample="false"
             enableUpdateByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 		<table domainObjectName="Account" tableName="t_account" enableDeleteByExample="false" enableCountByExample="false"
                enableUpdateByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
@@ -64,6 +66,6 @@
 		<table domainObjectName="RechargeRecord" tableName="t_recharge_record" enableDeleteByExample="false" enableCountByExample="false"
 			   enableUpdateByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 		<table domainObjectName="ReturnPlan" tableName="t_return_plan" enableDeleteByExample="false" enableCountByExample="false"
-			   enableUpdateByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+			   enableUpdateByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
 	</context>
 </generatorConfiguration>
