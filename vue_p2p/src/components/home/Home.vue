@@ -5,7 +5,6 @@
     <div>
       <router-view></router-view>
     </div>
-    <h1>前台首页</h1>
   </div>
 
 </template>

@@ -14,6 +14,374 @@
     <result column="access_money" jdbcType="DECIMAL" property="accessMoney" />
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status_type" jdbcType="INTEGER" property="statusType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    borrow_sign_id, borrow_name, borrow_user_id, borrow_money, year_rate, return_monthes, 
+    borrow_use, payment_method, borrow_days, access_money, publish_time, status, status_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_loan_mark
+    where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_loan_mark
+    where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.entity.LoanMark">
+    insert into t_loan_mark (borrow_sign_id, borrow_name, borrow_user_id, 
+      borrow_money, year_rate, return_monthes, 
+      borrow_use, payment_method, borrow_days, 
+      access_money, publish_time, status, 
+      status_type)
+    values (#{borrowSignId,jdbcType=INTEGER}, #{borrowName,jdbcType=VARCHAR}, #{borrowUserId,jdbcType=INTEGER}, 
+      #{borrowMoney,jdbcType=DECIMAL}, #{yearRate,jdbcType=DECIMAL}, #{returnMonthes,jdbcType=INTEGER}, 
+      #{borrowUse,jdbcType=VARCHAR}, #{paymentMethod,jdbcType=INTEGER}, #{borrowDays,jdbcType=VARCHAR}, 
+      #{accessMoney,jdbcType=DECIMAL}, #{publishTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{statusType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.entity.LoanMark">
+    insert into t_loan_mark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="borrowSignId != null">
+        borrow_sign_id,
+      </if>
+      <if test="borrowName != null">
+        borrow_name,
+      </if>
+      <if test="borrowUserId != null">
+        borrow_user_id,
+      </if>
+      <if test="borrowMoney != null">
+        borrow_money,
+      </if>
+      <if test="yearRate != null">
+        year_rate,
+      </if>
+      <if test="returnMonthes != null">
+        return_monthes,
+      </if>
+      <if test="borrowUse != null">
+        borrow_use,
+      </if>
+      <if test="paymentMethod != null">
+        payment_method,
+      </if>
+      <if test="borrowDays != null">
+        borrow_days,
+      </if>
+      <if test="accessMoney != null">
+        access_money,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="statusType != null">
+        status_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="borrowSignId != null">
+        #{borrowSignId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowName != null">
+        #{borrowName,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowUserId != null">
+        #{borrowUserId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowMoney != null">
+        #{borrowMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="yearRate != null">
+        #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMonthes != null">
+        #{returnMonthes,jdbcType=INTEGER},
+      </if>
+      <if test="borrowUse != null">
+        #{borrowUse,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null">
+        #{paymentMethod,jdbcType=INTEGER},
+      </if>
+      <if test="borrowDays != null">
+        #{borrowDays,jdbcType=VARCHAR},
+      </if>
+      <if test="accessMoney != null">
+        #{accessMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusType != null">
+        #{statusType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.entity.LoanMark">
+    update t_loan_mark
+    <set>
+      <if test="borrowName != null">
+        borrow_name = #{borrowName,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowUserId != null">
+        borrow_user_id = #{borrowUserId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowMoney != null">
+        borrow_money = #{borrowMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="yearRate != null">
+        year_rate = #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMonthes != null">
+        return_monthes = #{returnMonthes,jdbcType=INTEGER},
+      </if>
+      <if test="borrowUse != null">
+        borrow_use = #{borrowUse,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null">
+        payment_method = #{paymentMethod,jdbcType=INTEGER},
+      </if>
+      <if test="borrowDays != null">
+        borrow_days = #{borrowDays,jdbcType=VARCHAR},
+      </if>
+      <if test="accessMoney != null">
+        access_money = #{accessMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusType != null">
+        status_type = #{statusType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.p2p.entity.LoanMark">
+    update t_loan_mark
+    set borrow_name = #{borrowName,jdbcType=VARCHAR},
+      borrow_user_id = #{borrowUserId,jdbcType=INTEGER},
+      borrow_money = #{borrowMoney,jdbcType=DECIMAL},
+      year_rate = #{yearRate,jdbcType=DECIMAL},
+      return_monthes = #{returnMonthes,jdbcType=INTEGER},
+      borrow_use = #{borrowUse,jdbcType=VARCHAR},
+      payment_method = #{paymentMethod,jdbcType=INTEGER},
+      borrow_days = #{borrowDays,jdbcType=VARCHAR},
+      access_money = #{accessMoney,jdbcType=DECIMAL},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      status_type = #{statusType,jdbcType=INTEGER}
+    where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.p2p.entity.LoanMark">
+    <id column="borrow_sign_id" jdbcType="INTEGER" property="borrowSignId" />
+    <result column="borrow_name" jdbcType="VARCHAR" property="borrowName" />
+    <result column="borrow_user_id" jdbcType="INTEGER" property="borrowUserId" />
+    <result column="borrow_money" jdbcType="DECIMAL" property="borrowMoney" />
+    <result column="year_rate" jdbcType="DECIMAL" property="yearRate" />
+    <result column="return_monthes" jdbcType="INTEGER" property="returnMonthes" />
+    <result column="borrow_use" jdbcType="VARCHAR" property="borrowUse" />
+    <result column="payment_method" jdbcType="INTEGER" property="paymentMethod" />
+    <result column="borrow_days" jdbcType="VARCHAR" property="borrowDays" />
+    <result column="access_money" jdbcType="DECIMAL" property="accessMoney" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="statusType" jdbcType="INTEGER" property="statustype" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    borrow_sign_id, borrow_name, borrow_user_id, borrow_money, year_rate, return_monthes, 
+    borrow_use, payment_method, borrow_days, access_money, publish_time, status, statusType
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_loan_mark
+    where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_loan_mark
+    where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.p2p.entity.LoanMark">
+    insert into t_loan_mark (borrow_sign_id, borrow_name, borrow_user_id, 
+      borrow_money, year_rate, return_monthes, 
+      borrow_use, payment_method, borrow_days, 
+      access_money, publish_time, status, 
+      statusType)
+    values (#{borrowSignId,jdbcType=INTEGER}, #{borrowName,jdbcType=VARCHAR}, #{borrowUserId,jdbcType=INTEGER}, 
+      #{borrowMoney,jdbcType=DECIMAL}, #{yearRate,jdbcType=DECIMAL}, #{returnMonthes,jdbcType=INTEGER}, 
+      #{borrowUse,jdbcType=VARCHAR}, #{paymentMethod,jdbcType=INTEGER}, #{borrowDays,jdbcType=VARCHAR}, 
+      #{accessMoney,jdbcType=DECIMAL}, #{publishTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{statustype,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.entity.LoanMark">
+    insert into t_loan_mark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="borrowSignId != null">
+        borrow_sign_id,
+      </if>
+      <if test="borrowName != null">
+        borrow_name,
+      </if>
+      <if test="borrowUserId != null">
+        borrow_user_id,
+      </if>
+      <if test="borrowMoney != null">
+        borrow_money,
+      </if>
+      <if test="yearRate != null">
+        year_rate,
+      </if>
+      <if test="returnMonthes != null">
+        return_monthes,
+      </if>
+      <if test="borrowUse != null">
+        borrow_use,
+      </if>
+      <if test="paymentMethod != null">
+        payment_method,
+      </if>
+      <if test="borrowDays != null">
+        borrow_days,
+      </if>
+      <if test="accessMoney != null">
+        access_money,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="statustype != null">
+        statusType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="borrowSignId != null">
+        #{borrowSignId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowName != null">
+        #{borrowName,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowUserId != null">
+        #{borrowUserId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowMoney != null">
+        #{borrowMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="yearRate != null">
+        #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMonthes != null">
+        #{returnMonthes,jdbcType=INTEGER},
+      </if>
+      <if test="borrowUse != null">
+        #{borrowUse,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null">
+        #{paymentMethod,jdbcType=INTEGER},
+      </if>
+      <if test="borrowDays != null">
+        #{borrowDays,jdbcType=VARCHAR},
+      </if>
+      <if test="accessMoney != null">
+        #{accessMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statustype != null">
+        #{statustype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.entity.LoanMark">
+    update t_loan_mark
+    <set>
+      <if test="borrowName != null">
+        borrow_name = #{borrowName,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowUserId != null">
+        borrow_user_id = #{borrowUserId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowMoney != null">
+        borrow_money = #{borrowMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="yearRate != null">
+        year_rate = #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="returnMonthes != null">
+        return_monthes = #{returnMonthes,jdbcType=INTEGER},
+      </if>
+      <if test="borrowUse != null">
+        borrow_use = #{borrowUse,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null">
+        payment_method = #{paymentMethod,jdbcType=INTEGER},
+      </if>
+      <if test="borrowDays != null">
+        borrow_days = #{borrowDays,jdbcType=VARCHAR},
+      </if>
+      <if test="accessMoney != null">
+        access_money = #{accessMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statustype != null">
+        statusType = #{statustype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.p2p.entity.LoanMark">
+    update t_loan_mark
+    set borrow_name = #{borrowName,jdbcType=VARCHAR},
+      borrow_user_id = #{borrowUserId,jdbcType=INTEGER},
+      borrow_money = #{borrowMoney,jdbcType=DECIMAL},
+      year_rate = #{yearRate,jdbcType=DECIMAL},
+      return_monthes = #{returnMonthes,jdbcType=INTEGER},
+      borrow_use = #{borrowUse,jdbcType=VARCHAR},
+      payment_method = #{paymentMethod,jdbcType=INTEGER},
+      borrow_days = #{borrowDays,jdbcType=VARCHAR},
+      access_money = #{accessMoney,jdbcType=DECIMAL},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      statusType = #{statustype,jdbcType=INTEGER}
+    where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.p2p.entity.LoanMark">
+    <id column="borrow_sign_id" jdbcType="INTEGER" property="borrowSignId" />
+    <result column="borrow_name" jdbcType="VARCHAR" property="borrowName" />
+    <result column="borrow_user_id" jdbcType="INTEGER" property="borrowUserId" />
+    <result column="borrow_money" jdbcType="DECIMAL" property="borrowMoney" />
+    <result column="year_rate" jdbcType="DECIMAL" property="yearRate" />
+    <result column="return_monthes" jdbcType="INTEGER" property="returnMonthes" />
+    <result column="borrow_use" jdbcType="VARCHAR" property="borrowUse" />
+    <result column="payment_method" jdbcType="INTEGER" property="paymentMethod" />
+    <result column="borrow_days" jdbcType="VARCHAR" property="borrowDays" />
+    <result column="access_money" jdbcType="DECIMAL" property="accessMoney" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
     borrow_sign_id, borrow_name, borrow_user_id, borrow_money, year_rate, return_monthes, 

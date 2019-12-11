@@ -13,7 +13,7 @@
               <span style="font-size: 16px">欢迎</span>
               <span style="color: chartreuse;font-size: 16px">{{userName}}</span>
               <span style="font-size: 16px">登录</span>&nbsp;&nbsp;&nbsp;
-              <router-link to="/home" style="font-size: 20px; color: #fff;">首页</router-link>&nbsp;&nbsp;&nbsp;
+              <router-link to="/homePage" style="font-size: 20px; color: #fff;">首页</router-link>&nbsp;&nbsp;&nbsp;
               <router-link to="/" style="font-size: 20px; color: #fff;">登录</router-link>&nbsp;&nbsp;&nbsp;
               <router-link to="" style="font-size: 20px; color: #fff;">帮助</router-link>
             </template>

@@ -12,13 +12,13 @@ public class LoanMark {
 
     private BigDecimal borrowMoney;
 
-    private String yearRate;
+    private BigDecimal yearRate;
 
-    private String returnMonthes;
+    private Integer returnMonthes;
 
     private String borrowUse;
 
-    private String paymentMethod;
+    private Integer paymentMethod;
 
     private String borrowDays;
 
@@ -26,7 +26,9 @@ public class LoanMark {
 
     private Date publishTime;
 
-    private String status;
+    private Integer status;
+
+    private Integer statusType;
 
     public Integer getBorrowSignId() {
         return borrowSignId;
@@ -60,20 +62,20 @@ public class LoanMark {
         this.borrowMoney = borrowMoney;
     }
 
-    public String getYearRate() {
+    public BigDecimal getYearRate() {
         return yearRate;
     }
 
-    public void setYearRate(String yearRate) {
-        this.yearRate = yearRate == null ? null : yearRate.trim();
+    public void setYearRate(BigDecimal yearRate) {
+        this.yearRate = yearRate;
     }
 
-    public String getReturnMonthes() {
+    public Integer getReturnMonthes() {
         return returnMonthes;
     }
 
-    public void setReturnMonthes(String returnMonthes) {
-        this.returnMonthes = returnMonthes == null ? null : returnMonthes.trim();
+    public void setReturnMonthes(Integer returnMonthes) {
+        this.returnMonthes = returnMonthes;
     }
 
     public String getBorrowUse() {
@@ -84,12 +86,12 @@ public class LoanMark {
         this.borrowUse = borrowUse == null ? null : borrowUse.trim();
     }
 
-    public String getPaymentMethod() {
+    public Integer getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod == null ? null : paymentMethod.trim();
+    public void setPaymentMethod(Integer paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public String getBorrowDays() {
@@ -116,11 +118,19 @@ public class LoanMark {
         this.publishTime = publishTime;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getStatusType() {
+        return statusType;
+    }
+
+    public void setStatusType(Integer statusType) {
+        this.statusType = statusType;
     }
 }

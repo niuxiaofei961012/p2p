@@ -28,6 +28,8 @@ public class LoanMark {
 
     private Integer status;
 
+    private Integer statusType;
+
     public Integer getBorrowSignId() {
         return borrowSignId;
     }
@@ -122,5 +124,13 @@ public class LoanMark {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getStatusType() {
+        return statusType;
+    }
+
+    public void setStatusType(Integer statusType) {
+        this.statusType = statusType;
     }
 }

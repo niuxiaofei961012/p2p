@@ -7,10 +7,10 @@
       <hr>
       账户总额:{{Account.accoubtAvbalance}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       可用余额:{{Account.accoubtAvbalance}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      冻结金额:{{Account.accoubt_frobalance}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      冻结金额:{{Account.accoubtFrobalance}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <br>
       待收利息:{{Account.unreceiveInterest}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      待收本金:{{Account.unreceive_principal}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      待收本金:{{Account.unreceivePrincipal}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       待收本息:{{Account.unreceiveMoney}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <hr>
       <div style="width: 600px;height: 400px;margin-top: 50px">

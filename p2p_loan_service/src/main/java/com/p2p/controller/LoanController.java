@@ -2,6 +2,7 @@ package com.p2p.controller;
 
 import com.p2p.dto.ComputerMoney;
 import com.p2p.service.LoanService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,7 @@ public class LoanController {
     private LoanService loanService;
 
     @PostMapping("computerMoney")
-    public BigDecimal computerMoney(@RequestBody ComputerMoney computerMoney){
+    public BigDecimal computerMoney(@RequestBody ComputerMoney computerMoney) {
         return loanService.computerMoney(computerMoney);
     }
 }

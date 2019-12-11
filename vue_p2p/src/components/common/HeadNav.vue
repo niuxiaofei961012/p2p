@@ -33,7 +33,7 @@
       persone(key){
         let self=this;
         switch (key) {
-          case 1: self.$router.push('/home');break;
+          case 1: self.$router.push('/homePage');break;
           case 2:
           case 3: self.$router.push('/borrow');break;
           case 4: self.$router.push('/personalCenter');break;
