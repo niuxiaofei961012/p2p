@@ -3,7 +3,6 @@ package com.p2p.service;
 import com.alibaba.fastjson.JSON;
 import com.p2p.common.UserConstant;
 import com.p2p.dao.AccountMapper;
-import com.p2p.dao.LoginMapper;
 import com.p2p.dao.UserMapper;
 import com.p2p.entity.Account;
 import com.p2p.entity.LoginVO;
@@ -30,7 +29,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Resource
     private StringRedisTemplate stringRedisTemplate;
-
 
     @Override
     public Map<String,Object> login(LoginVO loginVO, HttpServletRequest request, HttpServletResponse response) {
@@ -84,5 +82,24 @@ public class LoginServiceImpl implements LoginService {
             return userMapper.selectByPrimaryKey(id);
         }
        return null;
+    }
+
+    @Override
+    public Map<String, Object> menegerLogin(LoginVO loginVO, HttpServletRequest request, HttpServletResponse response) {
+        //登录验证
+        //数据库根据用户名查询用户
+        Map<String,Object> map = new HashMap<>();
+
+        User login = userMapper.login(loginVO.getUserUsername());
+        if (login == null) {
+            map.put("menegerName","管理员不存在");
+            return map;
+        }
+        if (!login.getUserPassword().equals(Md5Util.getMd5(loginVO.getUserPassword()))) {
+            map.put("menegerPassword","密码错误");
+            return map;
+        }
+        map.put("ok",login);
+        return map;
     }
 }

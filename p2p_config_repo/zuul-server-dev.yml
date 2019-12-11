@@ -23,7 +23,10 @@ zuul:
     loan-service:
       serviceId: loan-service
       path: /p2p/loan_service/**
-
+filter:
+  whiteList:
+    - /p2p/login
+    - /p2p/menegerLogin
 
 #  ratelimit:
 #    key-prefix: user-service #请求的key的前缀

@@ -1,10 +1,12 @@
 <template>
-    <h1>头部</h1>
+    <el-main>
+      <h1>满标审核</h1>
+    </el-main>
 </template>
 
 <script>
     export default {
-        name: "head"
+        name: "FullBidAudit"
     }
 </script>
 

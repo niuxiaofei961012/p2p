@@ -1,14 +1,21 @@
 package com.p2p.service;
 
 import com.p2p.constant.ComputerMoneyConstant;
+import com.p2p.constant.LoanMarkConstant;
+import com.p2p.dao.LoanMarkMapper;
 import com.p2p.dto.ComputerMoney;
+import com.p2p.entity.LoanMark;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Service
 public class LoanServiceImpl implements LoanService {
+    @Resource
+    private LoanMarkMapper loanMarkMapper;
+
     @Override
     public BigDecimal computerMoney(ComputerMoney computerMoney) {
         //初始化金额
@@ -36,6 +43,21 @@ public class LoanServiceImpl implements LoanService {
         }
 
         return returnInterest;
+    }
+
+    @Override
+    public boolean addLoanMark(LoanMark loanMark) {
+        try {
+            //设置审核类型状态
+            loanMark.setStatusType(LoanMarkConstant.BEFORE_BID);
+            //设置借款标状态
+            loanMark.setStatus(LoanMarkConstant.LOAN_WAIT_AUDIT);
+            loanMarkMapper.insertSelective(loanMark);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

@@ -129,6 +129,7 @@
         },
         created(){
           let userId = window.localStorage.getItem("userId");
+          this.form.borrowUserId=userId;
           this.getAccountInfo(userId);
         }
     }

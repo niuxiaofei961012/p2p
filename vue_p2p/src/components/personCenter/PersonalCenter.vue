@@ -54,7 +54,6 @@
 
       <div v-if="accountIndex==1">
         <Account></Account>
-        <router-view></router-view>
       </div>
     </el-col>
   </el-row>

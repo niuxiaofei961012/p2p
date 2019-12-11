@@ -1,18 +1,12 @@
 <template>
   <div id="app">
-    <div v-if="$route.meta.keepAlive">
-      <Head></Head>
-      <router-view></router-view>
-    </div>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Head from '@/components/Head';
 export default {
   name: 'App',
-  components:{Head},
   created(){
 
   }

@@ -11,4 +11,6 @@ public interface LoginService {
     Map<String,Object> login(LoginVO loginVO, HttpServletRequest request, HttpServletResponse response);
 
     User register(User user);
+
+    Map<String, Object> menegerLogin(LoginVO loginVO, HttpServletRequest request, HttpServletResponse response);
 }
