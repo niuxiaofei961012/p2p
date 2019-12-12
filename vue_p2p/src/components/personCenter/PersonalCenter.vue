@@ -50,7 +50,7 @@
         </el-submenu>
       </el-menu>
     </el-col >
-    <el-col :span="9">
+    <el-col :span="20">
 
       <div v-if="accountIndex==1">
         <Account></Account>

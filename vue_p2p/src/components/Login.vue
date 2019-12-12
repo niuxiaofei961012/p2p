@@ -32,7 +32,6 @@
     },
     methods:{
       login(){
-        this.$router.push("/home/");
         if(this.loginForm.userUsername==null){
           this.$message("请输入用户名")
           return;
@@ -48,7 +47,6 @@
           data:this.loginForm
         }).then(function (res) {
           if(res.data.ok){
-            console.log(res)
             self.User = res.data.ok
             let user = JSON.parse(self.User);
             window.localStorage.setItem("userId",user.id);

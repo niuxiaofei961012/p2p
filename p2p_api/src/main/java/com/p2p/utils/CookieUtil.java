@@ -22,11 +22,11 @@ public class CookieUtil {
 
         Cookie[] cookies = request.getCookies();
 
-
-        for (Cookie cookie : cookies) {
-            map.put(cookie.getName(),cookie.getValue());
+        if(cookies!=null) {
+            for (Cookie cookie : cookies) {
+                map.put(cookie.getName(), cookie.getValue());
+            }
         }
-
         return map;
     }
 

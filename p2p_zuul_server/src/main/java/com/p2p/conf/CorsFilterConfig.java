@@ -16,6 +16,7 @@ public class CorsFilterConfig {
         config.addAllowedOrigin("http://www.p2p.cn:9090");
         config.addAllowedOrigin("http://www.p2p.cn");
         config.addAllowedOrigin("http://localhost:9090");
+        config.addAllowedOrigin("http://localhost:9191");
 
         //2) 是否发送Cookie信息
         config.setAllowCredentials(true);

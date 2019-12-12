@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-@Component
+//@Component
 public class LoginFilter extends ZuulFilter {
 
     @Autowired
@@ -59,24 +60,29 @@ public class LoginFilter extends ZuulFilter {
     public Object run() throws ZuulException {
 
         RequestContext context = RequestContext.getCurrentContext();
+        HttpServletResponse response = context.getResponse();
         HttpServletRequest request = context.getRequest();
-
         String uri = request.getRequestURI();
 
         boolean isok = true;
         String tk = CookieUtil.getCookieValue(request,CookieUtil.COOKIE_NAME_TOKEN);
         if (tk==null||"".equals(tk)){
+            /*try {
+                response.sendRedirect("");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }*/
             isok = false;
         }
         User user = redisService.get(tk,User.class);
         if (user==null){
+
             isok=false;
         }
         if (!isok){
             context.setSendZuulResponse(false);
             context.setResponseStatusCode(HttpStatus.SC_FORBIDDEN);
         }
-
         return null;
     }
 }

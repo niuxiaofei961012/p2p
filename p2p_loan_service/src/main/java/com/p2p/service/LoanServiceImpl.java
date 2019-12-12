@@ -1,5 +1,7 @@
 package com.p2p.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.p2p.constant.ComputerMoneyConstant;
 import com.p2p.constant.LoanMarkConstant;
 import com.p2p.dao.LoanMarkMapper;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Date;
 
 @Service
 public class LoanServiceImpl implements LoanService {
@@ -52,10 +55,29 @@ public class LoanServiceImpl implements LoanService {
             loanMark.setStatusType(LoanMarkConstant.BEFORE_BID);
             //设置借款标状态
             loanMark.setStatus(LoanMarkConstant.LOAN_WAIT_AUDIT);
+            //设置时间
+            loanMark.setPublishTime(new Date());
             loanMarkMapper.insertSelective(loanMark);
             return true;
         }catch (Exception e){
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public PageInfo<LoanMark> getLoanMarkList() {
+        PageHelper.startPage(1,3);
+        return new PageInfo<>(loanMarkMapper.getLoanMarkList());
+    }
+
+    @Override
+    public boolean updateStatus(Integer id,Integer status) {
+        try {
+            loanMarkMapper.updateStatus(id,status);
+            return true;
+        }catch (Exception e){
+
         }
         return false;
     }

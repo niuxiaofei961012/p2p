@@ -20,6 +20,11 @@
     borrow_sign_id, borrow_name, borrow_user_id, borrow_money, year_rate, return_monthes, 
     borrow_use, payment_method, borrow_days, access_money, publish_time, status, status_type
   </sql>
+  <select id="getLoanMarkList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_loan_mark
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
