@@ -1,10 +1,10 @@
 package com.p2p.controller;
 
+import com.p2p.dto.VerifyDTO;
 import com.p2p.entity.Account;
 import com.p2p.service.AccountService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -22,5 +22,15 @@ public class AccountController {
     @RequestMapping("selectByPrimaryKey")
     public Account selectByPrimaryKey(Integer id){
         return accountService.selectByPrimaryKey(id);
+    }
+
+    /**
+     * 密码验证
+     * @param verifyDTO
+     * @return
+     */
+    @PostMapping("verifyPassword")
+    public boolean verifyPassword(@RequestBody VerifyDTO verifyDTO){
+        return accountService.verifyPassword(verifyDTO.getId(),verifyDTO.getTradePassword());
     }
 }
