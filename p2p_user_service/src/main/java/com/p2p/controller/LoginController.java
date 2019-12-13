@@ -1,8 +1,11 @@
 package com.p2p.controller;
 
+import com.p2p.common.UserConstant;
 import com.p2p.entity.LoginVO;
 import com.p2p.entity.User;
 import com.p2p.service.LoginService;
+import com.p2p.utils.CookieUtil;
+import com.p2p.utils.RedisService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -34,6 +37,24 @@ public class LoginController {
     @PostMapping("register")
     public User register(@RequestBody User user){
         return loginService.register(user);
+    }
+
+    /**
+     * 单点登录验证
+     * @param request
+     * @return
+     */
+    @PostMapping("sso")
+    public User sso(HttpServletRequest request){
+        String cookieValue = CookieUtil.getCookieValue(request, UserConstant.USER_COOKIE_CODE);
+        RedisService redisService = new RedisService();
+        User user = redisService.get(cookieValue, User.class);
+        return user;
+    }
+
+    @RequestMapping("getUserInfoById")
+    public User getUserInfoById(Integer id){
+        return loginService.getUserInfoById(id);
     }
 
 }

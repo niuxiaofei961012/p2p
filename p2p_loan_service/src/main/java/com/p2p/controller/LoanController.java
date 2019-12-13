@@ -1,9 +1,11 @@
 package com.p2p.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.p2p.VO.LoanMarkVO;
 import com.p2p.dto.ComputerMoney;
 import com.p2p.entity.LoanMark;
 import com.p2p.service.LoanService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -36,15 +38,44 @@ public class LoanController {
     }
 
     /**
-     * 展示借款标信息
+     * 展示借款标信息(类型为审核前的)
+     * @param statusType
+     * @param pageNo
+     * @param pageSize
+     * @return
      */
-    @PostMapping("getLoanMarkList")
-    public PageInfo<LoanMark> getLoanMarkList(){
-        return loanService.getLoanMarkList();
+    @GetMapping("getLoanMarkList")
+    public PageInfo<LoanMarkVO> getLoanMarkList(@RequestParam("statusType") Integer statusType, @Param("pageNo") @RequestParam(defaultValue = "1") Integer pageNo,
+                                                @Param("pageSize") @RequestParam(defaultValue = "5")Integer pageSize){
+        return loanService.getLoanMarkList(statusType,pageNo,pageSize);
     }
 
+    /**
+     * 展示借款标信息(审核通过的)
+     * @param status
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("getLoanMarkListByStatus")
+    public PageInfo<LoanMarkVO> getLoanMarkListByStatus(@RequestParam("status") Integer status,@RequestParam("userId") Integer userId, @Param("pageNo") @RequestParam(defaultValue = "1") Integer pageNo,
+                                              @Param("pageSize") @RequestParam(defaultValue = "5")Integer pageSize){
+        return loanService.getLoanMarkListByStatus(userId,status,pageNo,pageSize);
+    }
+
+    /**
+     * 修改发标前状态
+     * @param id
+     * @param status
+     * @return
+     */
     @PostMapping("updateStatus")
     public boolean updateStatus(Integer id,Integer status){
         return loanService.updateStatus(id,status);
+    }
+
+    @GetMapping("getLoanMarkById")
+    public LoanMarkVO getLoanMarkById(Integer borrowSignId){
+        return loanService.getLoanMarkById(borrowSignId);
     }
 }

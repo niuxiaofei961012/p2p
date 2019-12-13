@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/p2p_account_service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/p2p_api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/p2p_audit_service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/p2p_bid_service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/p2p_config_repo" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/p2p_config_server" charset="UTF-8" />

@@ -13,4 +13,6 @@ public interface LoginService {
     User register(User user);
 
     Map<String, Object> menegerLogin(LoginVO loginVO, HttpServletRequest request, HttpServletResponse response);
+
+    User getUserInfoById(Integer id);
 }

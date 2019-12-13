@@ -18,7 +18,7 @@
         width="100">
       </el-table-column>
       <el-table-column
-        prop="borrowName"
+        prop="borrowUserName"
         label="借款人"
         width="100">
       </el-table-column>
@@ -87,15 +87,16 @@
         tableData:[],
         dialogFormVisible: false,
         formLabelWidth: '120px',
-        form:{}
+        form:{},
       }
     },
     methods: {
-      getList(){
+      getList(statusType){
         let self = this;
         axios({
           url:BorrowURL+"loan/getLoanMarkList",
-          method:"post",
+          method:"get",
+          params:{statusType:0}
         }).then(function (res) {
           self.tableData=res.data.list;
         })
@@ -126,7 +127,7 @@
     },
     created() {
       //获取借款标信息表
-      this.getList();
+      this.getList(0);
     }
   }
 </script>

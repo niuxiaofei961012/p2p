@@ -1,11 +1,11 @@
-package com.p2p.entity;
+package com.p2p.VO;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 @Data
-public class LoanMark {
+public class LoanMarkVO {
     //借款标ID
     private Integer borrowSignId;
     //借款标名称
@@ -28,12 +28,10 @@ public class LoanMark {
     private BigDecimal accessMoney;
     //发布时间
     private Date publishTime;
+    //借款人姓名
+    private String borrowUserName;
     //借款标状态
     private Integer status;
-    //状态类型
-    private Integer statusType;
     //总利息
     private BigDecimal grossInterest;
-
-
 }

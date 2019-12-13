@@ -59,7 +59,7 @@
       </el-form-item>
 
       <el-form-item label="需还利息">
-        <el-input :disabled="true" v-model="interest"></el-input>
+        <el-input :disabled="true" v-model="form.interest"></el-input>
       </el-form-item>
 
       <el-form-item>
@@ -80,7 +80,6 @@
           return {
             form:{},
             remainCreditLimit:0,
-            interest:""
           }
         },
         methods:{
@@ -93,7 +92,7 @@
               data:this.form
             }).then(function (res) {
               if(res){
-                self.interest=res.data;
+                self.form.interest=res.data;
               }
             })
           },

@@ -5,6 +5,7 @@ user-service:8081
 account-service:8082
 loan-service:8083
 bid-service:8084
+audit-service:8085
 
 vue_p2p:9090
 vue_p2p_back:9191

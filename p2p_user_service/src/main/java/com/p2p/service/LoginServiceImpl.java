@@ -102,4 +102,9 @@ public class LoginServiceImpl implements LoginService {
         map.put("ok",login);
         return map;
     }
+
+    @Override
+    public User getUserInfoById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 }

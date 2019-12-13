@@ -54,8 +54,8 @@
           let self = this;
           axios({
             url:baseURL+"p2p/account/selectByPrimaryKey",
-            method:"post",
-            data:{id:userId}
+            method:"get",
+            params:{id:userId}
           }).then(function (res) {
             self.Account = res.data;
           })

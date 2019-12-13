@@ -12,7 +12,7 @@
             <span>借款项目</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="1-1">投标项目</el-menu-item>
+            <el-menu-item index="/">投标项目</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <el-menu-item index="1-2">收款明细</el-menu-item>
@@ -55,6 +55,8 @@
       <div v-if="accountIndex==1">
         <Account></Account>
       </div>
+
+
     </el-col>
   </el-row>
 </template>

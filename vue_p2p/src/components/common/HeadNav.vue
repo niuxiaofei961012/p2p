@@ -34,7 +34,7 @@
         let self=this;
         switch (key) {
           case 1: self.$router.push('/homePage');break;
-          case 2:
+          case 2: self.$router.push('/bidList');break;
           case 3: self.$router.push('/borrow');break;
           case 4: self.$router.push('/personalCenter');break;
           case 5:

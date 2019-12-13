@@ -12,8 +12,6 @@ public class CookieUtil {
 
     public static String getCookieValue(HttpServletRequest request, String name){
         Map<String ,String> map = readCookieByRequest(request);
-
-
         return map.get(name);
     }
 

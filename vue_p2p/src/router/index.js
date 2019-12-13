@@ -6,6 +6,8 @@ import Home from '@/components/home/Home'
 import HomePage from '@/components/home/HomePage'
 import Register from '@/components/Register'
 import Borrow from '@/components/borrow/Borrow';
+import BidList from '@/components/bid/BidList';
+import OneInfoFromBid from '@/components/bid/OneInfoFromBid';
 
 Vue.use(Router)
 
@@ -46,6 +48,16 @@ export default new Router({
           path: '/borrow',
           component: Borrow,
           name: 'Borrow',
+        },
+        {
+          path: '/bidList',
+          component: BidList,
+          name: 'BidList',
+        },
+        {
+          path: '/oneInfoFromBid/:id',
+          name: 'OneInfoFromBid',
+          component: OneInfoFromBid,
         },
       ]
     },

@@ -2,6 +2,7 @@ package com.p2p.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.p2p.VO.LoanMarkVO;
 import com.p2p.constant.ComputerMoneyConstant;
 import com.p2p.constant.LoanMarkConstant;
 import com.p2p.dao.LoanMarkMapper;
@@ -23,7 +24,7 @@ public class LoanServiceImpl implements LoanService {
     public BigDecimal computerMoney(ComputerMoney computerMoney) {
         //初始化金额
         BigDecimal returnInterest = BigDecimal.ZERO;
-        BigDecimal monthRate = computerMoney.getYearRate().divide(new BigDecimal(100)).divide(new BigDecimal(12), 2, RoundingMode.HALF_UP);
+        BigDecimal monthRate = computerMoney.getYearRate().divide(new BigDecimal(100)).divide(new BigDecimal(12));
         switch (computerMoney.getPaymentMethod()) {
             case ComputerMoneyConstant.RETURN_TYPE_MONTH_RATE://按月到期
                 BigDecimal monthInterest = computerMoney.getBorrowMoney().multiply(monthRate);//月利息=本金*月利率
@@ -57,6 +58,7 @@ public class LoanServiceImpl implements LoanService {
             loanMark.setStatus(LoanMarkConstant.LOAN_WAIT_AUDIT);
             //设置时间
             loanMark.setPublishTime(new Date());
+            System.out.println(loanMark);
             loanMarkMapper.insertSelective(loanMark);
             return true;
         }catch (Exception e){
@@ -66,9 +68,9 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public PageInfo<LoanMark> getLoanMarkList() {
-        PageHelper.startPage(1,3);
-        return new PageInfo<>(loanMarkMapper.getLoanMarkList());
+    public PageInfo<LoanMarkVO> getLoanMarkList(Integer statusType,Integer pageNo,Integer pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        return new PageInfo<>(loanMarkMapper.getLoanMarkList(statusType));
     }
 
     @Override
@@ -80,6 +82,17 @@ public class LoanServiceImpl implements LoanService {
 
         }
         return false;
+    }
+
+    @Override
+    public PageInfo<LoanMarkVO> getLoanMarkListByStatus(Integer userId,Integer status, Integer pageNo, Integer pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        return new PageInfo<>(loanMarkMapper.getLoanMarkListByStatus(userId,status));
+    }
+
+    @Override
+    public LoanMarkVO getLoanMarkById(Integer borrowSignId) {
+        return loanMarkMapper.selectByPrimaryKey(borrowSignId);
     }
 
 }

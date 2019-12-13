@@ -1,5 +1,6 @@
 package com.p2p.dao;
 
+import com.p2p.VO.LoanMarkVO;
 import com.p2p.entity.LoanMark;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,14 +17,17 @@ public interface LoanMarkMapper {
 
     int insertSelective(LoanMark record);
 
-    LoanMark selectByPrimaryKey(Integer borrowSignId);
+    LoanMarkVO selectByPrimaryKey(Integer borrowSignId);
 
     int updateByPrimaryKeySelective(LoanMark record);
 
     int updateByPrimaryKey(LoanMark record);
 
-    List<LoanMark> getLoanMarkList();
+    List<LoanMarkVO> getLoanMarkList(@Param("statusType") Integer statusType);
 
     @Update("update t_loan_mark set status = #{status,jdbcType=INTEGER} where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER} ")
     int updateStatus(@Param("borrowSignId") Integer borrowSignId, @Param("status")Integer status);
+
+    List<LoanMarkVO> getLoanMarkListByStatus(@Param("userId") Integer userId,@Param("status") Integer status);
+
 }

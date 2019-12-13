@@ -8,7 +8,7 @@
           text-color="#fff"
           active-text-color="#ffd04b"
           style="margin-top: -60px;">
-          <el-submenu index="1" align="right" >
+          <el-submenu index="1" align="right">
             <template slot="title">
               <span style="font-size: 16px">欢迎</span>
               <span style="color: chartreuse;font-size: 16px">{{userName}}</span>
@@ -25,17 +25,38 @@
 </template>
 
 <script>
-    export default {
-        name: "Head",
-        data(){
-          return {
-            userName:""
-          }
-        },
-      created(){
-        this.userName = window.localStorage.getItem("userName");
+  const axios = require("axios");
+  axios.defaults.withCredentials = true;
+  const baseURL = "http://localhost:10010/p2p/user_service/";
+  export default {
+    name: "Head",
+    data() {
+      return {
+        userName: "",
+        form:{}
       }
+    },
+    created() {
+      this.userName = window.localStorage.getItem("userName");
+      if(this.userName ==null || this.userName == ''){
+        this.$router.replace({path: '/'});//登录页面
+      }
+      /*let self = this;
+      axios({
+        url: baseURL+"p2p/sso",
+        method:"post"
+      }).then(function (resp) {
+        console.log(resp.data)
+        if (resp.data == null || resp.data =='') {
+          self.$router.replace({path: '/'});//登录页面
+        } else {
+
+        }
+      }).catch(function (e) {
+        self.$router.replace({path: '/'});//登录页面
+      });*/
     }
+  }
 </script>
 
 <style scoped>

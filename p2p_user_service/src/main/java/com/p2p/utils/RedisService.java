@@ -5,19 +5,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 @Service
 public class RedisService {
 
-    @Autowired
-    private StringRedisTemplate redisTemplate;
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
 
     public <T> void set(String key,T obj,int seconds){
 
         String json = objToJson(obj);
 
-        redisTemplate.opsForValue().set(key,json,seconds, TimeUnit.SECONDS);
+        stringRedisTemplate.opsForValue().set(key,json,seconds, TimeUnit.SECONDS);
     }
 
     private <T> String objToJson(T obj) {
@@ -33,7 +34,10 @@ public class RedisService {
         if (key==null){
             return null;
         }
-        String s = redisTemplate.opsForValue().get(key);
+        System.out.println("s======");
+        System.out.println(key);
+        String s = stringRedisTemplate.opsForValue().get(key);
+        System.out.println("s======"+s);
         if (s==null){
             return null;
         }
