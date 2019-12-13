@@ -69,11 +69,9 @@
           <el-radio v-model="form.status" label="2">审核不通过</el-radio>
           <el-input
             type="textarea"
-            placeholder="请输入审核备注"
-            v-model="auditComment"
-            maxlength="30"
-            show-word-limit
-          >
+            :rows="2"
+            placeholder="请输入内容"
+            v-model="auditComment">
           </el-input>
         </el-form-item>
       </el-form>
@@ -114,17 +112,17 @@
       add(form){
         this.form=form
         this.form.auditUserId=this.auditUserId
-        this.form.auditComment=this.auditComment
-        console.log(this.form)
         this.dialogFormVisible=true;
       },
       updateStatus(){
+        this.form.auditComment=this.auditComment
         let self = this;
         axios({
           url:BorrowURL+"loan/updateStatus",
           method:"post",
           data:this.form
         }).then(function (res) {
+          console.log(res)
           if(res){
             self.dialogFormVisible=false;
             alert("修改成功")

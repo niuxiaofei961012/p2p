@@ -94,10 +94,13 @@ public class LoanServiceImpl implements LoanService {
 
         try {
             loanMarkMapper.updateStatus(borrowAuditRecord.getBorrowId(),borrowAuditRecord.getAuditStatus());
-            auditFeign.addAudit(borrowAuditRecord);
-            return true;
+            int i = auditFeign.addAudit(borrowAuditRecord);
+            if(i>0){
+                return true;
+            }
+            return false;
         }catch (Exception e){
-
+            e.printStackTrace();
         }
         return false;
     }
