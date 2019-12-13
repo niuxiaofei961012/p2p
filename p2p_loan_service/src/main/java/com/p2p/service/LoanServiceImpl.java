@@ -7,8 +7,12 @@ import com.p2p.constant.ComputerMoneyConstant;
 import com.p2p.constant.LoanMarkConstant;
 import com.p2p.dao.LoanMarkMapper;
 import com.p2p.dto.ComputerMoney;
+import com.p2p.dto.ReceiveBeforeBidAuditDTO;
+import com.p2p.entity.BorrowAuditRecord;
 import com.p2p.entity.LoanMark;
+import com.p2p.feign.AuditFeign;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -16,9 +20,13 @@ import java.math.RoundingMode;
 import java.util.Date;
 
 @Service
+@Transactional
 public class LoanServiceImpl implements LoanService {
     @Resource
     private LoanMarkMapper loanMarkMapper;
+
+    @Resource
+    private AuditFeign auditFeign;
 
     @Override
     public BigDecimal computerMoney(ComputerMoney computerMoney) {
@@ -74,9 +82,19 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public boolean updateStatus(Integer id,Integer status) {
+    public boolean updateStatus(ReceiveBeforeBidAuditDTO receiveBeforeBidAuditDTO) {
+        BorrowAuditRecord borrowAuditRecord = new BorrowAuditRecord();
+
+        borrowAuditRecord.setBorrowId(receiveBeforeBidAuditDTO.getBorrowSignId());
+        borrowAuditRecord.setAuditUserId(receiveBeforeBidAuditDTO.getAuditUserId());
+        borrowAuditRecord.setAuditType(receiveBeforeBidAuditDTO.getStatusType());
+        borrowAuditRecord.setAuditStatus(receiveBeforeBidAuditDTO.getStatus());
+        borrowAuditRecord.setAuditComment(receiveBeforeBidAuditDTO.getAuditComment());
+        borrowAuditRecord.setAuditTime(new Date());
+
         try {
-            loanMarkMapper.updateStatus(id,status);
+            loanMarkMapper.updateStatus(borrowAuditRecord.getBorrowId(),borrowAuditRecord.getAuditStatus());
+            auditFeign.addAudit(borrowAuditRecord);
             return true;
         }catch (Exception e){
 

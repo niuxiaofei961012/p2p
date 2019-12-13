@@ -31,7 +31,6 @@
     },
     methods:{
       login(){
-        this.$router.push("/home/");
         if(this.loginForm.userUsername==null){
           this.$message("请输入用户名")
           return;
@@ -48,8 +47,8 @@
         }).then(function (res) {
           if(res.data.ok){
             self.Admin = res.data.ok
-            let admin = JSON.parse(self.Admin);
-            window.localStorage.setItem("menegerName",admin.userUsername);
+            window.localStorage.setItem("menegerName",self.Admin.userUsername);
+            window.localStorage.setItem("menegerId",self.Admin.id);
             self.$message("登录成功")
             self.$router.push("/home/");
           }else if(res.data.menegerName){

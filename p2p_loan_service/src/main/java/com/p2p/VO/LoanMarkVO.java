@@ -34,4 +34,6 @@ public class LoanMarkVO {
     private Integer status;
     //总利息
     private BigDecimal grossInterest;
+    //审核类型
+    private Integer statusType;
 }

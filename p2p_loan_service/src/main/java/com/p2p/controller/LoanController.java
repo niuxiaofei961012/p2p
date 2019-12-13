@@ -3,6 +3,7 @@ package com.p2p.controller;
 import com.github.pagehelper.PageInfo;
 import com.p2p.VO.LoanMarkVO;
 import com.p2p.dto.ComputerMoney;
+import com.p2p.dto.ReceiveBeforeBidAuditDTO;
 import com.p2p.entity.LoanMark;
 import com.p2p.service.LoanService;
 import org.apache.ibatis.annotations.Param;
@@ -70,8 +71,8 @@ public class LoanController {
      * @return
      */
     @PostMapping("updateStatus")
-    public boolean updateStatus(Integer id,Integer status){
-        return loanService.updateStatus(id,status);
+    public boolean updateStatus(@RequestBody ReceiveBeforeBidAuditDTO receiveBeforeBidAuditDTO){
+        return loanService.updateStatus(receiveBeforeBidAuditDTO);
     }
 
     @GetMapping("getLoanMarkById")

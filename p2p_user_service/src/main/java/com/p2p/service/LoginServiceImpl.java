@@ -10,6 +10,7 @@ import com.p2p.entity.User;
 import com.p2p.utils.Md5Util;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -21,6 +22,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@Transactional
 public class LoginServiceImpl implements LoginService {
     @Resource
     private UserMapper userMapper;

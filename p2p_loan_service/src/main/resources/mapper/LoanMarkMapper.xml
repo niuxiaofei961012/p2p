@@ -31,11 +31,12 @@
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="user_username" jdbcType="VARCHAR" property="borrowUserName" />
+    <result column="status_type" jdbcType="INTEGER" property="statusType" />
     <result column="gross_interest" jdbcType="DECIMAL" property="grossInterest" />
   </resultMap>
   <sql id="Base_Column_List">
     a.borrow_sign_id, a.borrow_name, a.borrow_user_id, a.borrow_money, a.year_rate, a.return_monthes,
-   a.borrow_use, a.payment_method, a.borrow_days, a.access_money, a.publish_time,a.gross_interest,a.status,b.user_username
+   a.borrow_use, a.payment_method, a.borrow_days, a.access_money, a.publish_time,a.gross_interest,a.status,a.status_type,b.user_username
   </sql>
   <select id="getLoanMarkList" resultMap="LoanMarkVO">
     select

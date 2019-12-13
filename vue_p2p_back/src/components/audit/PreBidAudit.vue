@@ -52,7 +52,7 @@
         width="100">
         <template slot-scope="scope">
           <el-button
-            @click="add(scope.row.borrowSignId)"
+            @click="add(scope.row)"
             type="text"
             size="small">
             审核
@@ -67,11 +67,19 @@
           <el-radio v-model="form.status" label="0">待审核</el-radio>
           <el-radio v-model="form.status" label="1">审核通过</el-radio>
           <el-radio v-model="form.status" label="2">审核不通过</el-radio>
+          <el-input
+            type="textarea"
+            placeholder="请输入审核备注"
+            v-model="auditComment"
+            maxlength="30"
+            show-word-limit
+          >
+          </el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="updateStatus(form.status)">确 定</el-button>
+        <el-button type="primary" @click="updateStatus()">确 定</el-button>
       </div>
     </el-dialog>
   </el-main>
@@ -88,6 +96,8 @@
         dialogFormVisible: false,
         formLabelWidth: '120px',
         form:{},
+        auditUserId:0,
+        auditComment:""
       }
     },
     methods: {
@@ -96,23 +106,24 @@
         axios({
           url:BorrowURL+"loan/getLoanMarkList",
           method:"get",
-          params:{statusType:0}
+          params:{statusType:statusType}
         }).then(function (res) {
           self.tableData=res.data.list;
         })
       },
-      add(id){
-        this.form={}
-        this.form.id=id;
+      add(form){
+        this.form=form
+        this.form.auditUserId=this.auditUserId
+        this.form.auditComment=this.auditComment
+        console.log(this.form)
         this.dialogFormVisible=true;
       },
-      updateStatus(status){
-        let id = this.form.id
+      updateStatus(){
         let self = this;
         axios({
           url:BorrowURL+"loan/updateStatus",
           method:"post",
-          params:{id:id,status:status}
+          data:this.form
         }).then(function (res) {
           if(res){
             self.dialogFormVisible=false;
@@ -128,6 +139,7 @@
     created() {
       //获取借款标信息表
       this.getList(0);
+      this.auditUserId = window.localStorage.getItem("menegerId");
     }
   }
 </script>
