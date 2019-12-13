@@ -122,11 +122,10 @@
           method:"post",
           data:this.form
         }).then(function (res) {
-          console.log(res)
           if(res){
             self.dialogFormVisible=false;
             alert("修改成功")
-            self.getList()
+            self.getList(0)
           }else{
             alert("修改失败")
             self.dialogFormVisible=false;
