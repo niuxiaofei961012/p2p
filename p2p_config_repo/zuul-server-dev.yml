@@ -23,6 +23,10 @@ zuul:
     loan-service:
       serviceId: loan-service
       path: /p2p/loan_service/**
+
+    audit-service:
+      serviceId: audit-service
+      path: /p2p/audit_service/**
 filter:
   whiteList:
     - /p2p/login
