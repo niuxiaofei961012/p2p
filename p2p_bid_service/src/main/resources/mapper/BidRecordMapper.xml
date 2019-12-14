@@ -6,7 +6,7 @@
     <result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
     <result column="borrow_name" property="borrowName" jdbcType="VARCHAR" />
     <result column="bid_money" property="bidMoney" jdbcType="DECIMAL" />
-    <result column="year_rate" property="yearRate" jdbcType="VARCHAR" />
+    <result column="year_rate" property="yearRate" jdbcType="DECIMAL" />
     <result column="bid_time" property="bidTime" jdbcType="TIMESTAMP" />
     <result column="bid_user_id" property="bidUserId" jdbcType="INTEGER" />
     <result column="borrow_user_id" property="borrowUserId" jdbcType="INTEGER" />
@@ -40,7 +40,7 @@
       bid_money, year_rate, bid_time, 
       bid_user_id, borrow_user_id)
     values (#{bidId,jdbcType=INTEGER}, #{borrowId,jdbcType=INTEGER}, #{borrowName,jdbcType=VARCHAR}, 
-      #{bidMoney,jdbcType=DECIMAL}, #{yearRate,jdbcType=VARCHAR}, #{bidTime,jdbcType=TIMESTAMP}, 
+      #{bidMoney,jdbcType=DECIMAL}, #{yearRate,jdbcType=DECIMAL}, #{bidTime,jdbcType=TIMESTAMP},
       #{bidUserId,jdbcType=INTEGER}, #{borrowUserId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.p2p.entity.BidRecord" >
@@ -85,7 +85,7 @@
         #{bidMoney,jdbcType=DECIMAL},
       </if>
       <if test="yearRate != null" >
-        #{yearRate,jdbcType=VARCHAR},
+        #{yearRate,jdbcType=DECIMAL},
       </if>
       <if test="bidTime != null" >
         #{bidTime,jdbcType=TIMESTAMP},
@@ -111,7 +111,7 @@
         bid_money = #{bidMoney,jdbcType=DECIMAL},
       </if>
       <if test="yearRate != null" >
-        year_rate = #{yearRate,jdbcType=VARCHAR},
+        year_rate = #{yearRate,jdbcType=DECIMAL},
       </if>
       <if test="bidTime != null" >
         bid_time = #{bidTime,jdbcType=TIMESTAMP},
@@ -130,7 +130,7 @@
     set borrow_id = #{borrowId,jdbcType=INTEGER},
       borrow_name = #{borrowName,jdbcType=VARCHAR},
       bid_money = #{bidMoney,jdbcType=DECIMAL},
-      year_rate = #{yearRate,jdbcType=VARCHAR},
+      year_rate = #{yearRate,jdbcType=DECIMAL},
       bid_time = #{bidTime,jdbcType=TIMESTAMP},
       bid_user_id = #{bidUserId,jdbcType=INTEGER},
       borrow_user_id = #{borrowUserId,jdbcType=INTEGER}

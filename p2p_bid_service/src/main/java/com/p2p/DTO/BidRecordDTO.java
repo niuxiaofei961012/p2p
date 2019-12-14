@@ -16,7 +16,7 @@ public class BidRecordDTO {
     //投资额
     private BigDecimal bidMoney;
     //年利率
-    private String yearRate;
+    private BigDecimal yearRate;
     //投标时间
     private Date bidTime;
     //投标人id

@@ -1,12 +1,12 @@
 package com.p2p.dao;
 
-import com.p2p.VO.LoanMarkVO;
+import com.p2p.vo.LoanMarkVO;
 import com.p2p.entity.LoanMark;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Mapper
@@ -30,4 +30,9 @@ public interface LoanMarkMapper {
 
     List<LoanMarkVO> getLoanMarkListByStatus(@Param("userId") Integer userId,@Param("status") Integer status);
 
+    @Update("update update  t_loan_mark set  access_money =  access_money + #{bidMoney}  where borrow_sign_id=#{id}")
+    void updateAccessMoney(@Param("id") Integer id,@Param("bidMoney") BigDecimal bidMoney);
+
+    @Update("update update  t_loan_mark set  status_type = #{statusType}  where borrow_sign_id=#{id}")
+    void updateStatusType(@Param("id") Integer id,@Param("statusType") Integer statusType);
 }

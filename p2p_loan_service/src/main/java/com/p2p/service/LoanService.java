@@ -1,8 +1,10 @@
 package com.p2p.service;
 
 import com.github.pagehelper.PageInfo;
-import com.p2p.VO.LoanMarkVO;
+import com.p2p.dto.UpdateLoanMarkStatusTypeDTO;
+import com.p2p.vo.LoanMarkVO;
 import com.p2p.dto.ComputerMoney;
+import com.p2p.dto.LoanMarkDTO;
 import com.p2p.dto.ReceiveBeforeBidAuditDTO;
 import com.p2p.entity.LoanMark;
 
@@ -20,4 +22,8 @@ public interface LoanService {
     PageInfo<LoanMarkVO> getLoanMarkListByStatus(Integer userId,Integer status, Integer pageNo, Integer pageSize);
 
     LoanMarkVO getLoanMarkById(Integer borrowSignId);
+
+    boolean updateAccessMoney(LoanMarkDTO loanMarkDTO);
+
+    boolean updateStatusType(UpdateLoanMarkStatusTypeDTO updateLoanMarkStatusTypeDTO);
 }

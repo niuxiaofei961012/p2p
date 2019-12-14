@@ -1,76 +1,24 @@
 package com.p2p.entity;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
-
+@Data
 public class AccountFlow {
     private Integer recordId;
-
+    //动账时间
     private Date recordDate;
-
+    //操作类型
     private String recordHandletype;
-
+    //操作金额
     private BigDecimal recordHandlemoney;
-
+    //账户id
     private Integer accountId;
-
+    //结余
     private BigDecimal recordSurplus;
-
+    //备注
     private String recordNotes;
 
-    public Integer getRecordId() {
-        return recordId;
-    }
 
-    public void setRecordId(Integer recordId) {
-        this.recordId = recordId;
-    }
-
-    public Date getRecordDate() {
-        return recordDate;
-    }
-
-    public void setRecordDate(Date recordDate) {
-        this.recordDate = recordDate;
-    }
-
-    public String getRecordHandletype() {
-        return recordHandletype;
-    }
-
-    public void setRecordHandletype(String recordHandletype) {
-        this.recordHandletype = recordHandletype == null ? null : recordHandletype.trim();
-    }
-
-    public BigDecimal getRecordHandlemoney() {
-        return recordHandlemoney;
-    }
-
-    public void setRecordHandlemoney(BigDecimal recordHandlemoney) {
-        this.recordHandlemoney = recordHandlemoney;
-    }
-
-    public Integer getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
-    }
-
-    public BigDecimal getRecordSurplus() {
-        return recordSurplus;
-    }
-
-    public void setRecordSurplus(BigDecimal recordSurplus) {
-        this.recordSurplus = recordSurplus;
-    }
-
-    public String getRecordNotes() {
-        return recordNotes;
-    }
-
-    public void setRecordNotes(String recordNotes) {
-        this.recordNotes = recordNotes == null ? null : recordNotes.trim();
-    }
 }

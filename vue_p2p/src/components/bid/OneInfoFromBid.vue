@@ -68,7 +68,8 @@
         bidMoney:0,
         minBidMoney:0,
         needMoney:0,
-        VerifyDTO:{}
+        VerifyDTO:{},
+        form:{}
       }
     },
     methods: {
@@ -101,6 +102,17 @@
         }).then(function (res) {
           if(res.data){
             alert("密码正确")
+            let account = self.Account;
+            account.bidMoney=this.bidMoney
+            let loanMark = self.oneInfoFromBid;
+            self.form={account,loanMark}
+            axios({
+              url: AccountURL + "p2p/account/bid",
+              method: "post",
+              data: self.form
+            }).then(function (res) {
+
+            })
             self.dialogFormVisible=false;
           }else{
             alert("密码错误")

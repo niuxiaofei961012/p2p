@@ -31,6 +31,7 @@
     delete from t_account
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.p2p.entity.Account" >
     insert into t_account (id, accoubt_avbalance, accoubt_frobalance, 
       unreceive_principal, unreceive_interest, 

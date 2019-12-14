@@ -1,86 +1,26 @@
 package com.p2p.entity;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
-
+@Data
 public class BidRecord {
     private Integer bidId;
-
+    //借款标id
     private Integer borrowId;
-
+    //借款标名称
     private String borrowName;
-
+    //投资金额
     private BigDecimal bidMoney;
-
-    private String yearRate;
-
+    //年化利率
+    private BigDecimal yearRate;
+    //投标时间
     private Date bidTime;
-
+    //投标人id
     private Integer bidUserId;
-
+    //借款人id
     private Integer borrowUserId;
 
-    public Integer getBidId() {
-        return bidId;
-    }
 
-    public void setBidId(Integer bidId) {
-        this.bidId = bidId;
-    }
-
-    public Integer getBorrowId() {
-        return borrowId;
-    }
-
-    public void setBorrowId(Integer borrowId) {
-        this.borrowId = borrowId;
-    }
-
-    public String getBorrowName() {
-        return borrowName;
-    }
-
-    public void setBorrowName(String borrowName) {
-        this.borrowName = borrowName == null ? null : borrowName.trim();
-    }
-
-    public BigDecimal getBidMoney() {
-        return bidMoney;
-    }
-
-    public void setBidMoney(BigDecimal bidMoney) {
-        this.bidMoney = bidMoney;
-    }
-
-    public String getYearRate() {
-        return yearRate;
-    }
-
-    public void setYearRate(String yearRate) {
-        this.yearRate = yearRate == null ? null : yearRate.trim();
-    }
-
-    public Date getBidTime() {
-        return bidTime;
-    }
-
-    public void setBidTime(Date bidTime) {
-        this.bidTime = bidTime;
-    }
-
-    public Integer getBidUserId() {
-        return bidUserId;
-    }
-
-    public void setBidUserId(Integer bidUserId) {
-        this.bidUserId = bidUserId;
-    }
-
-    public Integer getBorrowUserId() {
-        return borrowUserId;
-    }
-
-    public void setBorrowUserId(Integer borrowUserId) {
-        this.borrowUserId = borrowUserId;
-    }
 }

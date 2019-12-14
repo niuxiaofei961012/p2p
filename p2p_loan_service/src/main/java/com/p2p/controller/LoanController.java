@@ -1,8 +1,10 @@
 package com.p2p.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.p2p.VO.LoanMarkVO;
+import com.p2p.dto.UpdateLoanMarkStatusTypeDTO;
+import com.p2p.vo.LoanMarkVO;
 import com.p2p.dto.ComputerMoney;
+import com.p2p.dto.LoanMarkDTO;
 import com.p2p.dto.ReceiveBeforeBidAuditDTO;
 import com.p2p.entity.LoanMark;
 import com.p2p.service.LoanService;
@@ -66,8 +68,7 @@ public class LoanController {
 
     /**
      * 修改发标前状态
-     * @param id
-     * @param status
+     * @param receiveBeforeBidAuditDTO
      * @return
      */
     @PostMapping("updateStatus")
@@ -75,8 +76,33 @@ public class LoanController {
         return loanService.updateStatus(receiveBeforeBidAuditDTO);
     }
 
+    /**
+     * 根据id查询借款标表
+     * @param borrowSignId
+     * @return
+     */
     @GetMapping("getLoanMarkById")
     public LoanMarkVO getLoanMarkById(Integer borrowSignId){
         return loanService.getLoanMarkById(borrowSignId);
+    }
+
+    /**
+     * 修改募集到的金额
+     * @param loanMarkDTO
+     * @return
+     */
+    @PostMapping("updateAccessMoney")
+    public boolean updateAccessMoney(@RequestBody LoanMarkDTO loanMarkDTO){
+        return loanService.updateAccessMoney(loanMarkDTO);
+    }
+
+    /**
+     * 修改状态为满标
+     * @param statusType
+     * @return
+     */
+    @PostMapping("updateStatusType")
+    public boolean updateStatusType(@RequestBody UpdateLoanMarkStatusTypeDTO updateLoanMarkStatusTypeDTO){
+        return loanService.updateStatusType(updateLoanMarkStatusTypeDTO);
     }
 }

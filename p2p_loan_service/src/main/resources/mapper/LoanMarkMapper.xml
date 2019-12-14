@@ -17,7 +17,7 @@
     <result column="status_type" jdbcType="INTEGER" property="statusType" />
     <result column="gross_interest" jdbcType="DECIMAL" property="grossInterest" />
   </resultMap>
-  <resultMap id="LoanMarkVO" type="com.p2p.VO.LoanMarkVO">
+  <resultMap id="LoanMarkVO" type="com.p2p.vo.LoanMarkVO">
     <id column="borrow_sign_id" jdbcType="INTEGER" property="borrowSignId" />
     <result column="borrow_name" jdbcType="VARCHAR" property="borrowName" />
     <result column="borrow_user_id" jdbcType="INTEGER" property="borrowUserId" />

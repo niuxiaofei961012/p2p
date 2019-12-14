@@ -1,4 +1,4 @@
-package com.p2p.VO;
+package com.p2p.vo;
 
 import lombok.Data;
 

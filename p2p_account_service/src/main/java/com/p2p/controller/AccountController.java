@@ -1,5 +1,6 @@
 package com.p2p.controller;
 
+import com.p2p.dto.BidDTO;
 import com.p2p.dto.VerifyDTO;
 import com.p2p.entity.Account;
 import com.p2p.service.AccountService;
@@ -32,5 +33,10 @@ public class AccountController {
     @PostMapping("verifyPassword")
     public boolean verifyPassword(@RequestBody VerifyDTO verifyDTO){
         return accountService.verifyPassword(verifyDTO.getId(),verifyDTO.getTradePassword());
+    }
+
+    @PostMapping("bid")
+    public boolean bid(@RequestBody BidDTO bidDTO){
+        return accountService.bid(bidDTO);
     }
 }

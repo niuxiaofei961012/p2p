@@ -2,11 +2,13 @@ package com.p2p.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.p2p.VO.LoanMarkVO;
+import com.p2p.dto.UpdateLoanMarkStatusTypeDTO;
+import com.p2p.vo.LoanMarkVO;
 import com.p2p.constant.ComputerMoneyConstant;
 import com.p2p.constant.LoanMarkConstant;
 import com.p2p.dao.LoanMarkMapper;
 import com.p2p.dto.ComputerMoney;
+import com.p2p.dto.LoanMarkDTO;
 import com.p2p.dto.ReceiveBeforeBidAuditDTO;
 import com.p2p.entity.BorrowAuditRecord;
 import com.p2p.entity.LoanMark;
@@ -114,6 +116,28 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public LoanMarkVO getLoanMarkById(Integer borrowSignId) {
         return loanMarkMapper.selectByPrimaryKey(borrowSignId);
+    }
+
+    @Override
+    public boolean updateAccessMoney(LoanMarkDTO loanMarkDTO) {
+        try {
+            loanMarkMapper.updateAccessMoney(loanMarkDTO.getId(),loanMarkDTO.getBidMoney());
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateStatusType(UpdateLoanMarkStatusTypeDTO updateLoanMarkStatusTypeDTO) {
+        try {
+            loanMarkMapper.updateStatusType(updateLoanMarkStatusTypeDTO.getId(),updateLoanMarkStatusTypeDTO.getStatusType());
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
