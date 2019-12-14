@@ -27,6 +27,10 @@ zuul:
     audit-service:
       serviceId: audit-service
       path: /p2p/audit_service/**
+
+    bid-service:
+      serviceId: bid-service
+      path: /p2p/bid_service/**
 filter:
   whiteList:
     - /p2p/login
