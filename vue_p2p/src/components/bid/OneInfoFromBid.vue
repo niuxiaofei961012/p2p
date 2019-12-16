@@ -103,7 +103,7 @@
           if(res.data){
             alert("密码正确")
             let account = self.Account;
-            account.bidMoney=this.bidMoney
+            account.bidMoney=self.bidMoney
             let loanMark = self.oneInfoFromBid;
             self.form={account,loanMark}
             axios({
@@ -111,7 +111,12 @@
               method: "post",
               data: self.form
             }).then(function (res) {
-
+              if(res.data){
+                alert("投标成功")
+                self.$router.push("/bidList")
+              }else{
+                alert("投标失败")
+              }
             })
             self.dialogFormVisible=false;
           }else{

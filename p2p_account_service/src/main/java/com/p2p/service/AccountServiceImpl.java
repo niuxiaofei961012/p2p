@@ -2,16 +2,15 @@ package com.p2p.service;
 
 import com.p2p.dao.AccountFlowMapper;
 import com.p2p.dao.AccountMapper;
+import com.p2p.dao.RechargeRecordMapper;
 import com.p2p.dto.BidDTO;
 import com.p2p.dto.LoanMarkDTO;
 import com.p2p.dto.UpdateLoanMarkStatusTypeDTO;
-import com.p2p.entity.Account;
-import com.p2p.entity.AccountFlow;
-import com.p2p.entity.BidRecord;
-import com.p2p.entity.LoanMark;
+import com.p2p.entity.*;
 import com.p2p.feign.BidFeign;
 import com.p2p.feign.LoanMarkFeign;
 import com.p2p.utils.Md5Util;
+import com.p2p.utils.PayNumber;
 import com.p2p.vo.LoanMarkVO;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -29,6 +28,9 @@ public class AccountServiceImpl implements AccountService{
 
     @Resource
     private AccountFlowMapper accountFlowMapper;
+
+    @Resource
+    private RechargeRecordMapper rechargeRecordMapper;
 
     @Resource
     private BidFeign bidFeign;
@@ -62,18 +64,19 @@ public class AccountServiceImpl implements AccountService{
             accountMapper.updateMoney(account.getId(),account.getBidMoney());
 
             //修改完之后查询账户可用金额
-            Account afterAccount = accountMapper.selectById(account.getId());
-
-            //生成动账记录
-            accountFlow.setRecordDate(new Date());
-            accountFlow.setAccountId(account.getId());
-            accountFlow.setRecordHandlemoney(account.getBidMoney());
-            accountFlow.setRecordSurplus(afterAccount.getAccoubtAvbalance());
-            accountFlow.setRecordHandletype("初步投标成功");
-            accountFlow.setRecordNotes("账户id为:"+account.getId()+"进行了出账");
-            int insert = accountFlowMapper.insert(accountFlow);
-            if(insert==0){
-                return false;
+            Account afterAccount = accountMapper.selectByPrimaryKey(account.getId());
+            if(afterAccount!=null){
+                //生成动账记录
+                accountFlow.setRecordDate(new Date());
+                accountFlow.setAccountId(account.getId());
+                accountFlow.setRecordHandlemoney(account.getBidMoney());
+                accountFlow.setRecordSurplus(afterAccount.getAccoubtAvbalance());
+                accountFlow.setRecordHandletype("初步投标成功");
+                accountFlow.setRecordNotes("账户id为:"+account.getId()+"进行了出账");
+                int insert = accountFlowMapper.insert(accountFlow);
+                if(insert==0){
+                    return false;
+                }
             }
 
             //生成投标记录
@@ -84,7 +87,7 @@ public class AccountServiceImpl implements AccountService{
             bidRecord.setYearRate(loanMark.getYearRate());
             bidRecord.setBidTime(loanMark.getPublishTime());
             bidRecord.setBidUserId(account.getId());
-            bidRecord.setBorrowId(loanMark.getBorrowUserId());
+            bidRecord.setBorrowUserId(loanMark.getBorrowUserId());
             boolean addBidRecord = bidFeign.addBidRecord(bidRecord);
             if (!addBidRecord){
                 return false;
@@ -110,6 +113,51 @@ public class AccountServiceImpl implements AccountService{
                     }
                 }
             }
+
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean recharge(RechargeRecord rechargeRecord) {
+        AccountFlow accountFlow = new AccountFlow();
+        try {
+            //充值记录表插入记录
+            rechargeRecord.setDownOrderTime(new Date());
+            rechargeRecord.setPayTime(new Date());
+            rechargeRecord.setTradeCode(PayNumber.payNumber(new Date()));
+            rechargeRecord.setPayStatus(0);
+            rechargeRecord.setAuditStatue(0);
+            int i = rechargeRecordMapper.insertSelective(rechargeRecord);
+            if(i==0){
+                return false;
+            }
+            //修改账户冻结金额
+            int frobalance = accountMapper.updateAccoubtFrobalance(rechargeRecord.getCreateUserId(), rechargeRecord.getPayMoney());
+            if(frobalance==0){
+                return false;
+            }
+            //添加动账记录,先查询修改后用户的信息
+            Account account = accountMapper.selectByPrimaryKey(rechargeRecord.getCreateUserId());
+            //添加动账记录
+            if(account!=null){
+                //生成动账记录
+                accountFlow.setRecordDate(new Date());
+                accountFlow.setAccountId(account.getId());
+                accountFlow.setRecordHandlemoney(rechargeRecord.getPayMoney());
+                accountFlow.setRecordSurplus(account.getAccoubtAvbalance());
+                accountFlow.setRecordHandletype("初步充值成功");
+                accountFlow.setRecordNotes("账户id为:"+account.getId()+"进行了充值");
+                int insert = accountFlowMapper.insert(accountFlow);
+                if(insert==0){
+                    return false;
+                }
+            }
+
+
 
             return true;
         }catch (Exception e){

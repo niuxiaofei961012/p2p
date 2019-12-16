@@ -21,11 +21,9 @@ public interface AccountMapper {
 
     Account verifyPassword(@Param("id") Integer id, @Param("tradePassword")String tradePassword);
 
-    @Update("update account set  useable_amount = useable_amount-#{bidMoney}, freezon_amount =  freezon_amount+ #{bidMoney}  where id= #{id} ")
+    @Update("update t_account set  accoubt_avbalance = accoubt_avbalance - #{bidMoney}, accoubt_frobalance =  accoubt_frobalance+ #{bidMoney}  where id= #{id} ")
     void updateMoney(@Param("id") Integer id,@Param("bidMoney") BigDecimal bidMoney);
 
-    //修改之后查询账户可用金额
-    @Select("select accoubt_avbalance from t_account where id =#{id}")
-    @ResultType(com.p2p.entity.Account.class)
-    Account selectById(Integer id);
+    @Update("update t_account set  accoubt_frobalance =  accoubt_frobalance+ #{payMoney}  where id= #{createUserId} ")
+    int updateAccoubtFrobalance(@Param("createUserId") Integer createUserId, @Param("payMoney") BigDecimal payMoney);
 }

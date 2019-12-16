@@ -1,136 +1,36 @@
 package com.p2p.entity;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
-
+@Data
 public class RechargeRecord {
+    //主键id
     private Integer payId;
-
+    //支付金额
     private BigDecimal payMoney;
-
+    //下单时间
     private Date downOrderTime;
-
+    //支付时间
     private Date payTime;
-
-    private String chargeType;
-
+    //充值方式(0:线下1:线上)
+    private Integer chargeType;
+    //交易编号
     private String tradeCode;
-
+    //付款单备注
     private String payComment;
-
-    private String payStatus;
-
+    //支付状态
+    private Integer payStatus;
+    //用户id
     private Integer createUserId;
-
+    //审核人id
     private Integer auditUserId;
-
-    private String auditStatue;
-
+    //审核状态(0:未审核,1:审核通过)
+    private Integer auditStatue;
+    //审核批注
     private String auditComment;
-
+    //审核时间
     private Date auditTime;
 
-    public Integer getPayId() {
-        return payId;
-    }
-
-    public void setPayId(Integer payId) {
-        this.payId = payId;
-    }
-
-    public BigDecimal getPayMoney() {
-        return payMoney;
-    }
-
-    public void setPayMoney(BigDecimal payMoney) {
-        this.payMoney = payMoney;
-    }
-
-    public Date getDownOrderTime() {
-        return downOrderTime;
-    }
-
-    public void setDownOrderTime(Date downOrderTime) {
-        this.downOrderTime = downOrderTime;
-    }
-
-    public Date getPayTime() {
-        return payTime;
-    }
-
-    public void setPayTime(Date payTime) {
-        this.payTime = payTime;
-    }
-
-    public String getChargeType() {
-        return chargeType;
-    }
-
-    public void setChargeType(String chargeType) {
-        this.chargeType = chargeType == null ? null : chargeType.trim();
-    }
-
-    public String getTradeCode() {
-        return tradeCode;
-    }
-
-    public void setTradeCode(String tradeCode) {
-        this.tradeCode = tradeCode == null ? null : tradeCode.trim();
-    }
-
-    public String getPayComment() {
-        return payComment;
-    }
-
-    public void setPayComment(String payComment) {
-        this.payComment = payComment == null ? null : payComment.trim();
-    }
-
-    public String getPayStatus() {
-        return payStatus;
-    }
-
-    public void setPayStatus(String payStatus) {
-        this.payStatus = payStatus == null ? null : payStatus.trim();
-    }
-
-    public Integer getCreateUserId() {
-        return createUserId;
-    }
-
-    public void setCreateUserId(Integer createUserId) {
-        this.createUserId = createUserId;
-    }
-
-    public Integer getAuditUserId() {
-        return auditUserId;
-    }
-
-    public void setAuditUserId(Integer auditUserId) {
-        this.auditUserId = auditUserId;
-    }
-
-    public String getAuditStatue() {
-        return auditStatue;
-    }
-
-    public void setAuditStatue(String auditStatue) {
-        this.auditStatue = auditStatue == null ? null : auditStatue.trim();
-    }
-
-    public String getAuditComment() {
-        return auditComment;
-    }
-
-    public void setAuditComment(String auditComment) {
-        this.auditComment = auditComment == null ? null : auditComment.trim();
-    }
-
-    public Date getAuditTime() {
-        return auditTime;
-    }
-
-    public void setAuditTime(Date auditTime) {
-        this.auditTime = auditTime;
-    }
 }

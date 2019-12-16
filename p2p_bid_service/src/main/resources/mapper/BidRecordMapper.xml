@@ -23,6 +23,7 @@
       </if>
       <if test="bidRecordDTO.endTime!=null">
         bid_time &lt; #{bidRecordDTO.endTime}
+      </if>
     </where>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

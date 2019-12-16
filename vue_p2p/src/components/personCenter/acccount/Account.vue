@@ -2,7 +2,7 @@
   <div style="width: 800px;height: 500px">
     <el-main>
       用户名:{{userName}}<br>
-      <el-button type="primary" @click="">账户充值</el-button>
+      <el-button type="primary" @click="recharge">账户充值</el-button>
       <el-button type="primary" @click="">账户提现</el-button>
       <hr>
       账户总额:{{Account.accoubtAvbalance}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -59,6 +59,9 @@
           }).then(function (res) {
             self.Account = res.data;
           })
+        },
+        recharge(){
+          this.$router.push("/recharge/"+this.Account.id)
         }
       },
       created(){

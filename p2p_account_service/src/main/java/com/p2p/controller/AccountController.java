@@ -3,6 +3,7 @@ package com.p2p.controller;
 import com.p2p.dto.BidDTO;
 import com.p2p.dto.VerifyDTO;
 import com.p2p.entity.Account;
+import com.p2p.entity.RechargeRecord;
 import com.p2p.service.AccountService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +36,23 @@ public class AccountController {
         return accountService.verifyPassword(verifyDTO.getId(),verifyDTO.getTradePassword());
     }
 
+    /**
+     * 投标
+     * @param bidDTO
+     * @return
+     */
     @PostMapping("bid")
     public boolean bid(@RequestBody BidDTO bidDTO){
         return accountService.bid(bidDTO);
+    }
+
+    /**
+     * 充值
+     * @param rechargeRecord
+     * @return
+     */
+    @PostMapping("recharge")
+    public boolean recharge(@RequestBody RechargeRecord rechargeRecord){
+        return accountService.recharge(rechargeRecord);
     }
 }
