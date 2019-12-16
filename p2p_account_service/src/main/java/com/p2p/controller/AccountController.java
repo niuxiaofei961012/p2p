@@ -1,11 +1,15 @@
 package com.p2p.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.p2p.dto.BidDTO;
+import com.p2p.dto.UpdateAccountFrobalanceDTO;
 import com.p2p.dto.VerifyDTO;
 import com.p2p.entity.Account;
+import com.p2p.entity.AccountFlow;
 import com.p2p.entity.RechargeRecord;
 import com.p2p.service.AccountService;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,8 +25,8 @@ public class AccountController {
      * @param id
      * @return
      */
-    @RequestMapping("selectByPrimaryKey")
-    public Account selectByPrimaryKey(Integer id){
+    @GetMapping("selectByPrimaryKey")
+    public Account selectByPrimaryKey(@RequestParam("id") Integer id){
         return accountService.selectByPrimaryKey(id);
     }
 
@@ -54,5 +58,37 @@ public class AccountController {
     @PostMapping("recharge")
     public boolean recharge(@RequestBody RechargeRecord rechargeRecord){
         return accountService.recharge(rechargeRecord);
+    }
+
+    /**
+     * 查询所有充值记录
+     * @param rechargeRecord
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("getRechargeRecordList")
+    public PageInfo<RechargeRecord> getRechargeRecordList(RechargeRecord rechargeRecord, @RequestParam(defaultValue = "1") Integer pageNo, @RequestParam(defaultValue = "5") Integer pageSize){
+        return accountService.getRechargeRecordList(rechargeRecord,pageNo,pageSize);
+    }
+
+    /**
+     * 减少冻结金额,增加可用金额
+     * @param updateAccountFrobalanceDTO
+     * @return
+     */
+    @PostMapping("subtractFrobalanceAndAddAvbalance")
+    public int subtractFrobalanceAndAddAvbalance(@RequestBody UpdateAccountFrobalanceDTO updateAccountFrobalanceDTO){
+        return accountService.subtractFrobalanceAndAddAvbalance(updateAccountFrobalanceDTO);
+    }
+
+    /**
+     * 添加动账记录
+     * @param accountFlow
+     * @return
+     */
+    @PostMapping("insertAccountFlow")
+    public int insertAccountFlow(@RequestBody AccountFlow accountFlow){
+        return accountService.insert(accountFlow);
     }
 }

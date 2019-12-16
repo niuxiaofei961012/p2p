@@ -5,10 +5,10 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 更新借款标信息表收集到的募集资金
+ * 修改冻结金额和可用余额
  */
 @Data
-public class LoanMarkDTO {
+public class UpdateAccountFrobalanceDTO {
     private Integer id;
-    private BigDecimal bidMoney;
+    private BigDecimal recharge;
 }

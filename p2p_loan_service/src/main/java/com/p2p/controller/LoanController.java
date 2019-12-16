@@ -77,7 +77,7 @@ public class LoanController {
     }
 
     /**
-     * 根据id查询借款标表
+     * 根据id查询借款标表 account feign接口调用修改募集到的金额
      * @param borrowSignId
      * @return
      */
@@ -87,7 +87,7 @@ public class LoanController {
     }
 
     /**
-     * 修改募集到的金额
+     * account feign接口调用修改募集到的金额
      * @param loanMarkDTO
      * @return
      */
@@ -97,8 +97,8 @@ public class LoanController {
     }
 
     /**
-     * 修改状态为满标
-     * @param statusType
+     * 修改状态为满标 account feign接口调用
+     * @param updateLoanMarkStatusTypeDTO
      * @return
      */
     @PostMapping("updateStatusType")

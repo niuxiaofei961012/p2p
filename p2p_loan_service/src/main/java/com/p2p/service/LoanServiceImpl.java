@@ -95,7 +95,9 @@ public class LoanServiceImpl implements LoanService {
         borrowAuditRecord.setAuditTime(new Date());
 
         try {
+            //修改发标前状态
             loanMarkMapper.updateStatus(borrowAuditRecord.getBorrowId(),borrowAuditRecord.getAuditStatus());
+            //修改完后审核记录表添加信息
             int i = auditFeign.addAudit(borrowAuditRecord);
             if(i>0){
                 return true;
@@ -121,6 +123,7 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public boolean updateAccessMoney(LoanMarkDTO loanMarkDTO) {
         try {
+            //修改募集到的资金
             loanMarkMapper.updateAccessMoney(loanMarkDTO.getId(),loanMarkDTO.getBidMoney());
             return true;
         }catch (Exception e){

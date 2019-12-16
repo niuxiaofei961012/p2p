@@ -26,4 +26,7 @@ public interface AccountMapper {
 
     @Update("update t_account set  accoubt_frobalance =  accoubt_frobalance+ #{payMoney}  where id= #{createUserId} ")
     int updateAccoubtFrobalance(@Param("createUserId") Integer createUserId, @Param("payMoney") BigDecimal payMoney);
+
+    @Update("update t_account set accoubt_frobalance =  accoubt_frobalance - #{recharge},accoubt_avbalance = accoubt_avbalance + #{recharge} where id = #{id}")
+    int subtractFrobalanceAndAddAvbalance(@Param("id") Integer id,@Param("recharge") BigDecimal recharge);
 }
