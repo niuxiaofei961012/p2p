@@ -133,7 +133,13 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public LoanMarkVO getLoanMarkById(Integer borrowSignId) {
-        return loanMarkMapper.selectByPrimaryKey(borrowSignId);
+        LoanMarkVO loanMarkVO = loanMarkMapper.selectByPrimaryKey(borrowSignId);
+        Date publishTime = loanMarkVO.getPublishTime();
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE,loanMarkVO.getBorrowDays());
+        Date time = calendar.getTime();
+        loanMarkVO.setEndTime(time);
+        return loanMarkVO;
     }
 
     @Override

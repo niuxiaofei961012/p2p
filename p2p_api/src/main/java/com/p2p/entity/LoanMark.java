@@ -23,7 +23,7 @@ public class LoanMark {
     //还款方式(等额本息、等额本金、按月到期)
     private Integer paymentMethod;
     //招标天数
-    private String borrowDays;
+    private Integer borrowDays;
     //募集到的资金金额
     private BigDecimal accessMoney;
     //发布时间

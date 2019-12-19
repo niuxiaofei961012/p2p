@@ -10,7 +10,7 @@
     <result column="return_monthes" jdbcType="INTEGER" property="returnMonthes" />
     <result column="borrow_use" jdbcType="VARCHAR" property="borrowUse" />
     <result column="payment_method" jdbcType="INTEGER" property="paymentMethod" />
-    <result column="borrow_days" jdbcType="VARCHAR" property="borrowDays" />
+    <result column="borrow_days" jdbcType="INTEGER" property="borrowDays" />
     <result column="access_money" jdbcType="DECIMAL" property="accessMoney" />
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -26,7 +26,7 @@
     <result column="return_monthes" jdbcType="INTEGER" property="returnMonthes" />
     <result column="borrow_use" jdbcType="VARCHAR" property="borrowUse" />
     <result column="payment_method" jdbcType="INTEGER" property="paymentMethod" />
-    <result column="borrow_days" jdbcType="VARCHAR" property="borrowDays" />
+    <result column="borrow_days" jdbcType="INTEGER" property="borrowDays" />
     <result column="access_money" jdbcType="DECIMAL" property="accessMoney" />
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -74,7 +74,7 @@
       status_type)
     values (#{borrowSignId,jdbcType=INTEGER}, #{borrowName,jdbcType=VARCHAR}, #{borrowUserId,jdbcType=INTEGER}, 
       #{borrowMoney,jdbcType=DECIMAL}, #{yearRate,jdbcType=DECIMAL}, #{returnMonthes,jdbcType=INTEGER}, 
-      #{borrowUse,jdbcType=VARCHAR}, #{paymentMethod,jdbcType=INTEGER}, #{borrowDays,jdbcType=VARCHAR}, 
+      #{borrowUse,jdbcType=VARCHAR}, #{paymentMethod,jdbcType=INTEGER}, #{borrowDays,jdbcType=INTEGER},
       #{accessMoney,jdbcType=DECIMAL}, #{publishTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
       #{statusType,jdbcType=INTEGER})
   </insert>
@@ -150,7 +150,7 @@
         #{paymentMethod,jdbcType=INTEGER},
       </if>
       <if test="borrowDays != null">
-        #{borrowDays,jdbcType=VARCHAR},
+        #{borrowDays,jdbcType=INTEGER},
       </if>
       <if test="accessMoney != null">
         #{accessMoney,jdbcType=DECIMAL},
@@ -194,7 +194,7 @@
         payment_method = #{paymentMethod,jdbcType=INTEGER},
       </if>
       <if test="borrowDays != null">
-        borrow_days = #{borrowDays,jdbcType=VARCHAR},
+        borrow_days = #{borrowDays,jdbcType=INTEGER},
       </if>
       <if test="accessMoney != null">
         access_money = #{accessMoney,jdbcType=DECIMAL},
@@ -220,7 +220,7 @@
       return_monthes = #{returnMonthes,jdbcType=INTEGER},
       borrow_use = #{borrowUse,jdbcType=VARCHAR},
       payment_method = #{paymentMethod,jdbcType=INTEGER},
-      borrow_days = #{borrowDays,jdbcType=VARCHAR},
+      borrow_days = #{borrowDays,jdbcType=INTEGER},
       access_money = #{accessMoney,jdbcType=DECIMAL},
       publish_time = #{publishTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
