@@ -4,6 +4,7 @@ import com.p2p.common.UserConstant;
 import com.p2p.entity.LoginVO;
 import com.p2p.entity.User;
 import com.p2p.service.LoginService;
+import com.p2p.service.UserService;
 import com.p2p.utils.CookieUtil;
 import com.p2p.utils.RedisService;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,8 @@ public class LoginController {
     @Resource
     private LoginService loginService;
 
+    @Resource
+    private UserService userService;
     /**
      * 登录
      * @param loginVO
@@ -52,9 +55,24 @@ public class LoginController {
         return user;
     }
 
+    /**
+     * 根据id获取用户信息
+     * @param id
+     * @return
+     */
     @RequestMapping("getUserInfoById")
-    public User getUserInfoById(Integer id){
+    public User getUserInfoById(@RequestParam("id") Integer id){
         return loginService.getUserInfoById(id);
+    }
+
+    /**
+     * 更新用户
+     * @param user
+     * @return
+     */
+    @PostMapping("updateUser")
+    public boolean updateUser(@RequestBody User user){
+        return userService.updateUser(user);
     }
 
 }

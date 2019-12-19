@@ -1,136 +1,34 @@
 package com.p2p.entity;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
-
+@Data
 public class ReceivePlan {
     private Integer id;
-
+    //所属还款计划id
     private Integer returnId;
-
+    //借款标id
     private Integer borrowId;
-
+    //贷款名称
     private String loanName;
-
-    private String phase;
-
+    //第几期
+    private Integer phase;
+    //收款总金额
     private BigDecimal receiveMoney;
-
+    //收款利率
     private String receiveInterest;
-
+    //收款本金
     private BigDecimal receivePrincipal;
-
+    //利息管理费
     private BigDecimal interestFee;
-
+    //回款人id
     private Integer receiveUserId;
-
+    //回款日
     private Date receiveDate;
-
+    //实际回款日
     private Date actualReceiveDate;
-
-    private String receiveStatus;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getReturnId() {
-        return returnId;
-    }
-
-    public void setReturnId(Integer returnId) {
-        this.returnId = returnId;
-    }
-
-    public Integer getBorrowId() {
-        return borrowId;
-    }
-
-    public void setBorrowId(Integer borrowId) {
-        this.borrowId = borrowId;
-    }
-
-    public String getLoanName() {
-        return loanName;
-    }
-
-    public void setLoanName(String loanName) {
-        this.loanName = loanName == null ? null : loanName.trim();
-    }
-
-    public String getPhase() {
-        return phase;
-    }
-
-    public void setPhase(String phase) {
-        this.phase = phase == null ? null : phase.trim();
-    }
-
-    public BigDecimal getReceiveMoney() {
-        return receiveMoney;
-    }
-
-    public void setReceiveMoney(BigDecimal receiveMoney) {
-        this.receiveMoney = receiveMoney;
-    }
-
-    public String getReceiveInterest() {
-        return receiveInterest;
-    }
-
-    public void setReceiveInterest(String receiveInterest) {
-        this.receiveInterest = receiveInterest == null ? null : receiveInterest.trim();
-    }
-
-    public BigDecimal getReceivePrincipal() {
-        return receivePrincipal;
-    }
-
-    public void setReceivePrincipal(BigDecimal receivePrincipal) {
-        this.receivePrincipal = receivePrincipal;
-    }
-
-    public BigDecimal getInterestFee() {
-        return interestFee;
-    }
-
-    public void setInterestFee(BigDecimal interestFee) {
-        this.interestFee = interestFee;
-    }
-
-    public Integer getReceiveUserId() {
-        return receiveUserId;
-    }
-
-    public void setReceiveUserId(Integer receiveUserId) {
-        this.receiveUserId = receiveUserId;
-    }
-
-    public Date getReceiveDate() {
-        return receiveDate;
-    }
-
-    public void setReceiveDate(Date receiveDate) {
-        this.receiveDate = receiveDate;
-    }
-
-    public Date getActualReceiveDate() {
-        return actualReceiveDate;
-    }
-
-    public void setActualReceiveDate(Date actualReceiveDate) {
-        this.actualReceiveDate = actualReceiveDate;
-    }
-
-    public String getReceiveStatus() {
-        return receiveStatus;
-    }
-
-    public void setReceiveStatus(String receiveStatus) {
-        this.receiveStatus = receiveStatus == null ? null : receiveStatus.trim();
-    }
+    //回款状态(0:未还款,1:已还款)
+    private Integer receiveStatus;
 }

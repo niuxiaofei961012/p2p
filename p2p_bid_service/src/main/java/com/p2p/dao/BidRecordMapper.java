@@ -3,6 +3,7 @@ package com.p2p.dao;
 import com.p2p.DTO.BidRecordDTO;
 import com.p2p.entity.BidRecord;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface BidRecordMapper {
     int updateByPrimaryKey(BidRecord record);
 
     List<BidRecordDTO> getBidRecordList(BidRecordDTO bidRecordDTO);
+
+    List<BidRecord> selectBidRecordByBorrowId(@Param("borrowId") Integer borrowId);
 }

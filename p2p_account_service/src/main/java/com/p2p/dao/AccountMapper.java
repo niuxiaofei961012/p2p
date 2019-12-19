@@ -29,4 +29,10 @@ public interface AccountMapper {
 
     @Update("update t_account set accoubt_frobalance =  accoubt_frobalance - #{recharge},accoubt_avbalance = accoubt_avbalance + #{recharge} where id = #{id}")
     int subtractFrobalanceAndAddAvbalance(@Param("id") Integer id,@Param("recharge") BigDecimal recharge);
+
+    @Update("update t_account set remain_credit_limit =  remain_credit_limit - #{accessMoney},accoubt_avbalance = accoubt_avbalance + #{accessMoney},unreceive_money = unreceive_money + #{unreceiveMoney} where id = #{borrowUserId}")
+    int updateAccountByBorrowUser(@Param("borrowUserId") Integer borrowUserId,@Param("accessMoney") BigDecimal accessMoney,@Param("unreceiveMoney") BigDecimal unreceiveMoney);
+
+    @Update("update t_account set unreceive_principal = unreceive_principal + #{unreceivePrincipal},unreceive_interest = unreceive_interest + #{unreceiveInterest},accoubt_frobalance = accoubt_frobalance + #{unreceivePrincipal} where id = #{accountId}")
+    int updateAccountByBidUser(@Param("accountId") Integer accountId, @Param("unreceiveInterest")BigDecimal unreceiveInterest, @Param("unreceivePrincipal")BigDecimal unreceivePrincipal);
 }

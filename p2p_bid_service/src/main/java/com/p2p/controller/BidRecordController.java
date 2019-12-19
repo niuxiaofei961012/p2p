@@ -4,12 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.p2p.DTO.BidRecordDTO;
 import com.p2p.entity.BidRecord;
 import com.p2p.service.BidRecordService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("bid")
@@ -18,7 +16,7 @@ public class BidRecordController {
     private BidRecordService bidRecordService;
 
     /**
-     *
+     * 投标记录表
      * @param bidRecordDTO
      * @return
      */
@@ -28,12 +26,22 @@ public class BidRecordController {
     }
 
     /**
-     * 投标记录
+     * 添加投标记录
      * @param bidRecord
      * @return
      */
     @PostMapping("addBidRecord")
     public boolean addBidRecord(@RequestBody BidRecord bidRecord){
         return bidRecordService.addBidRecord(bidRecord);
+    }
+
+    /**
+     * 根据借款标id查询次标的记录
+     * @param borrowId
+     * @return
+     */
+    @RequestMapping("selectBidRecordByBorrowId")
+    public List<BidRecord> selectBidRecordByBorrowId(@RequestParam("borrowId") Integer borrowId){
+        return bidRecordService.selectBidRecordByBorrowId(borrowId);
     }
 }

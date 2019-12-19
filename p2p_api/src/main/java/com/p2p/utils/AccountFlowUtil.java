@@ -14,7 +14,7 @@ public class AccountFlowUtil {
         accountFlow.setAccountId(account.getId());
         accountFlow.setRecordHandlemoney(money);
         accountFlow.setRecordSurplus(account.getAccoubtAvbalance());
-        accountFlow.setRecordHandletype("初步" + handleType + "成功");
+        accountFlow.setRecordHandletype(handleType);
         accountFlow.setRecordNotes("账户id为:" + account.getId() + "进行了" + handleType);
         return accountFlow;
     }

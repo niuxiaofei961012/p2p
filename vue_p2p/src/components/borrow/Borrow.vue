@@ -59,7 +59,7 @@
       </el-form-item>
 
       <el-form-item label="需还利息">
-        <el-input :disabled="true" v-model="form.interest"></el-input>
+        <el-input :disabled="true" v-model="form.grossInterest"></el-input>
       </el-form-item>
 
       <el-form-item>
@@ -123,7 +123,6 @@
               }
             })
           },
-          //取消提交跳转home
         },
         created(){
           let userId = window.localStorage.getItem("userId");

@@ -26,4 +26,6 @@ public interface LoanService {
     boolean updateAccessMoney(LoanMarkDTO loanMarkDTO);
 
     boolean updateStatusType(UpdateLoanMarkStatusTypeDTO updateLoanMarkStatusTypeDTO);
+
+    boolean fullBidUpdateStatus(ReceiveBeforeBidAuditDTO receiveBeforeBidAuditDTO);
 }

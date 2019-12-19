@@ -32,6 +32,9 @@
           <el-menu-item-group>
             <el-menu-item @click="toAccount(1)">账户信息</el-menu-item>
           </el-menu-item-group>
+          <el-menu-item-group>
+            <el-menu-item @click="toAccount(2)">修改个人信息</el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
@@ -55,7 +58,9 @@
       <div v-if="accountIndex==1">
         <Account></Account>
       </div>
-
+      <div v-if="accountIndex==2">
+        <UpdateUser></UpdateUser>
+      </div>
 
     </el-col>
   </el-row>
@@ -65,9 +70,10 @@
   const axios = require("axios");
   const baseURL  = "http://back.p2p.com/";
   import Account from "@/components/personCenter/acccount/Account";
+  import UpdateUser from "@/components/personCenter/acccount/UpdateUser";
     export default {
         name: "PersonalCenter",
-        components:{Account},
+        components:{Account,UpdateUser},
         data(){
           return {
             accountIndex:0,

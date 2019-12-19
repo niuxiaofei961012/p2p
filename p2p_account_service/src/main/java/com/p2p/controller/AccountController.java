@@ -2,12 +2,14 @@ package com.p2p.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.p2p.dto.BidDTO;
+import com.p2p.dto.UpdateAccountByBidUserIdDTO;
 import com.p2p.dto.UpdateAccountFrobalanceDTO;
 import com.p2p.dto.VerifyDTO;
 import com.p2p.entity.Account;
 import com.p2p.entity.AccountFlow;
 import com.p2p.entity.RechargeRecord;
 import com.p2p.service.AccountService;
+import com.p2p.vo.LoanMarkVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -90,5 +92,25 @@ public class AccountController {
     @PostMapping("insertAccountFlow")
     public int insertAccountFlow(@RequestBody AccountFlow accountFlow){
         return accountService.insert(accountFlow);
+    }
+
+    /**
+     * 满标放款 修改借款人账户信息
+     * @param loanMarkVO
+     * @return
+     */
+    @PostMapping("updateAccountByBorrowUser")
+    public boolean updateAccountByBorrowUser(@RequestBody LoanMarkVO loanMarkVO){
+       return  accountService.updateAccountByBorrowUser(loanMarkVO);
+    }
+
+    /**
+     * 满标放款 修改投标人账户信息
+     * @param updateAccountByBidUserIdDTO
+     * @return
+     */
+    @PostMapping("updateAccountByBidUser")
+    public boolean updateAccountByBidUser(@RequestBody UpdateAccountByBidUserIdDTO updateAccountByBidUserIdDTO){
+       return  accountService.updateAccountByBidUser(updateAccountByBidUserIdDTO);
     }
 }

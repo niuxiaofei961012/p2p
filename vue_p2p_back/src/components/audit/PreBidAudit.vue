@@ -45,6 +45,7 @@
           <span v-if="scope.row.status==0">待审核</span>
           <span v-else-if="scope.row.status==1">已审核</span>
           <span v-else-if="scope.row.status==2">审核不通过</span>
+          <span v-else-if="scope.row.status==3">还款中</span>
         </template>
       </el-table-column>
       <el-table-column
@@ -64,7 +65,6 @@
     <el-dialog title="借款标状态审核" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="审核状态" :label-width="formLabelWidth">
-          <el-radio v-model="form.status" label="0">待审核</el-radio>
           <el-radio v-model="form.status" label="1">审核通过</el-radio>
           <el-radio v-model="form.status" label="2">审核不通过</el-radio>
           <el-input

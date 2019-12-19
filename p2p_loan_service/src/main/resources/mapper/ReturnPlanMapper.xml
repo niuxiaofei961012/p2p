@@ -5,14 +5,14 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
     <result column="loan_name" property="loanName" jdbcType="VARCHAR" />
-    <result column="phase" property="phase" jdbcType="VARCHAR" />
+    <result column="phase" property="phase" jdbcType="INTEGER" />
     <result column="return_user_id" property="returnUserId" jdbcType="INTEGER" />
     <result column="return_money" property="returnMoney" jdbcType="DECIMAL" />
     <result column="return_principal" property="returnPrincipal" jdbcType="DECIMAL" />
     <result column="return_interest" property="returnInterest" jdbcType="DECIMAL" />
     <result column="return_deadline" property="returnDeadline" jdbcType="TIMESTAMP" />
     <result column="return_time" property="returnTime" jdbcType="TIMESTAMP" />
-    <result column="return_status" property="returnStatus" jdbcType="VARCHAR" />
+    <result column="return_status" property="returnStatus" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, borrow_id, loan_name, phase, return_user_id, return_money, return_principal, 
@@ -34,11 +34,14 @@
       return_principal, return_interest, return_deadline, 
       return_time, return_status)
     values (#{id,jdbcType=INTEGER}, #{borrowId,jdbcType=INTEGER}, #{loanName,jdbcType=VARCHAR}, 
-      #{phase,jdbcType=VARCHAR}, #{returnUserId,jdbcType=INTEGER}, #{returnMoney,jdbcType=DECIMAL}, 
+      #{phase,jdbcType=INTEGER}, #{returnUserId,jdbcType=INTEGER}, #{returnMoney,jdbcType=DECIMAL},
       #{returnPrincipal,jdbcType=DECIMAL}, #{returnInterest,jdbcType=DECIMAL}, #{returnDeadline,jdbcType=TIMESTAMP}, 
-      #{returnTime,jdbcType=TIMESTAMP}, #{returnStatus,jdbcType=VARCHAR})
+      #{returnTime,jdbcType=TIMESTAMP}, #{returnStatus,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.entity.ReturnPlan" >
+  <insert id="insertSelective" parameterType="com.p2p.entity.ReturnPlan">
+    <selectKey keyProperty="id" order="AFTER" resultType="int">
+        select  LAST_INSERT_ID()
+    </selectKey>
     insert into t_return_plan
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -86,7 +89,7 @@
         #{loanName,jdbcType=VARCHAR},
       </if>
       <if test="phase != null" >
-        #{phase,jdbcType=VARCHAR},
+        #{phase,jdbcType=INTEGER},
       </if>
       <if test="returnUserId != null" >
         #{returnUserId,jdbcType=INTEGER},
@@ -107,7 +110,7 @@
         #{returnTime,jdbcType=TIMESTAMP},
       </if>
       <if test="returnStatus != null" >
-        #{returnStatus,jdbcType=VARCHAR},
+        #{returnStatus,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -121,7 +124,7 @@
         loan_name = #{loanName,jdbcType=VARCHAR},
       </if>
       <if test="phase != null" >
-        phase = #{phase,jdbcType=VARCHAR},
+        phase = #{phase,jdbcType=INTEGER},
       </if>
       <if test="returnUserId != null" >
         return_user_id = #{returnUserId,jdbcType=INTEGER},
@@ -142,7 +145,7 @@
         return_time = #{returnTime,jdbcType=TIMESTAMP},
       </if>
       <if test="returnStatus != null" >
-        return_status = #{returnStatus,jdbcType=VARCHAR},
+        return_status = #{returnStatus,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -151,14 +154,14 @@
     update t_return_plan
     set borrow_id = #{borrowId,jdbcType=INTEGER},
       loan_name = #{loanName,jdbcType=VARCHAR},
-      phase = #{phase,jdbcType=VARCHAR},
+      phase = #{phase,jdbcType=INTEGER},
       return_user_id = #{returnUserId,jdbcType=INTEGER},
       return_money = #{returnMoney,jdbcType=DECIMAL},
       return_principal = #{returnPrincipal,jdbcType=DECIMAL},
       return_interest = #{returnInterest,jdbcType=DECIMAL},
       return_deadline = #{returnDeadline,jdbcType=TIMESTAMP},
       return_time = #{returnTime,jdbcType=TIMESTAMP},
-      return_status = #{returnStatus,jdbcType=VARCHAR}
+      return_status = #{returnStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,116 +1,31 @@
 package com.p2p.entity;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
-
+@Data
 public class ReturnPlan {
     private Integer id;
-
+    //借款标id
     private Integer borrowId;
-
+    //贷款名称
     private String loanName;
-
-    private String phase;
-
+    //第几期
+    private Integer phase;
+    //还款人id
     private Integer returnUserId;
-
+    //还款本息
     private BigDecimal returnMoney;
-
+    //还款本金
     private BigDecimal returnPrincipal;
-
+    //还款利息
     private BigDecimal returnInterest;
-
+    //还款截止日期
     private Date returnDeadline;
-
+    //还款时间
     private Date returnTime;
+    //还款状态(0:未还款,1:已还款)
+    private Integer returnStatus;
 
-    private String returnStatus;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getBorrowId() {
-        return borrowId;
-    }
-
-    public void setBorrowId(Integer borrowId) {
-        this.borrowId = borrowId;
-    }
-
-    public String getLoanName() {
-        return loanName;
-    }
-
-    public void setLoanName(String loanName) {
-        this.loanName = loanName == null ? null : loanName.trim();
-    }
-
-    public String getPhase() {
-        return phase;
-    }
-
-    public void setPhase(String phase) {
-        this.phase = phase == null ? null : phase.trim();
-    }
-
-    public Integer getReturnUserId() {
-        return returnUserId;
-    }
-
-    public void setReturnUserId(Integer returnUserId) {
-        this.returnUserId = returnUserId;
-    }
-
-    public BigDecimal getReturnMoney() {
-        return returnMoney;
-    }
-
-    public void setReturnMoney(BigDecimal returnMoney) {
-        this.returnMoney = returnMoney;
-    }
-
-    public BigDecimal getReturnPrincipal() {
-        return returnPrincipal;
-    }
-
-    public void setReturnPrincipal(BigDecimal returnPrincipal) {
-        this.returnPrincipal = returnPrincipal;
-    }
-
-    public BigDecimal getReturnInterest() {
-        return returnInterest;
-    }
-
-    public void setReturnInterest(BigDecimal returnInterest) {
-        this.returnInterest = returnInterest;
-    }
-
-    public Date getReturnDeadline() {
-        return returnDeadline;
-    }
-
-    public void setReturnDeadline(Date returnDeadline) {
-        this.returnDeadline = returnDeadline;
-    }
-
-    public Date getReturnTime() {
-        return returnTime;
-    }
-
-    public void setReturnTime(Date returnTime) {
-        this.returnTime = returnTime;
-    }
-
-    public String getReturnStatus() {
-        return returnStatus;
-    }
-
-    public void setReturnStatus(String returnStatus) {
-        this.returnStatus = returnStatus == null ? null : returnStatus.trim();
-    }
 }

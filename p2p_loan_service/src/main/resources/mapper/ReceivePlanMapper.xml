@@ -6,7 +6,7 @@
     <result column="return_id" property="returnId" jdbcType="INTEGER" />
     <result column="borrow_id" property="borrowId" jdbcType="INTEGER" />
     <result column="loan_name" property="loanName" jdbcType="VARCHAR" />
-    <result column="phase" property="phase" jdbcType="VARCHAR" />
+    <result column="phase" property="phase" jdbcType="INTEGER" />
     <result column="receive_money" property="receiveMoney" jdbcType="DECIMAL" />
     <result column="receive_interest" property="receiveInterest" jdbcType="VARCHAR" />
     <result column="receive_principal" property="receivePrincipal" jdbcType="DECIMAL" />
@@ -14,7 +14,7 @@
     <result column="receive_user_id" property="receiveUserId" jdbcType="INTEGER" />
     <result column="receive_date" property="receiveDate" jdbcType="TIMESTAMP" />
     <result column="actual_receive_date" property="actualReceiveDate" jdbcType="TIMESTAMP" />
-    <result column="receive_status" property="receiveStatus" jdbcType="VARCHAR" />
+    <result column="receive_status" property="receiveStatus" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, return_id, borrow_id, loan_name, phase, receive_money, receive_interest, receive_principal, 
@@ -37,10 +37,10 @@
       receive_user_id, receive_date, actual_receive_date, 
       receive_status)
     values (#{id,jdbcType=INTEGER}, #{returnId,jdbcType=INTEGER}, #{borrowId,jdbcType=INTEGER}, 
-      #{loanName,jdbcType=VARCHAR}, #{phase,jdbcType=VARCHAR}, #{receiveMoney,jdbcType=DECIMAL}, 
+      #{loanName,jdbcType=VARCHAR}, #{phase,jdbcType=INTEGER}, #{receiveMoney,jdbcType=DECIMAL},
       #{receiveInterest,jdbcType=VARCHAR}, #{receivePrincipal,jdbcType=DECIMAL}, #{interestFee,jdbcType=DECIMAL}, 
       #{receiveUserId,jdbcType=INTEGER}, #{receiveDate,jdbcType=TIMESTAMP}, #{actualReceiveDate,jdbcType=TIMESTAMP}, 
-      #{receiveStatus,jdbcType=VARCHAR})
+      #{receiveStatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.p2p.entity.ReceivePlan" >
     insert into t_receive_plan
@@ -99,7 +99,7 @@
         #{loanName,jdbcType=VARCHAR},
       </if>
       <if test="phase != null" >
-        #{phase,jdbcType=VARCHAR},
+        #{phase,jdbcType=INTEGER},
       </if>
       <if test="receiveMoney != null" >
         #{receiveMoney,jdbcType=DECIMAL},
@@ -123,7 +123,7 @@
         #{actualReceiveDate,jdbcType=TIMESTAMP},
       </if>
       <if test="receiveStatus != null" >
-        #{receiveStatus,jdbcType=VARCHAR},
+        #{receiveStatus,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -140,7 +140,7 @@
         loan_name = #{loanName,jdbcType=VARCHAR},
       </if>
       <if test="phase != null" >
-        phase = #{phase,jdbcType=VARCHAR},
+        phase = #{phase,jdbcType=INTEGER},
       </if>
       <if test="receiveMoney != null" >
         receive_money = #{receiveMoney,jdbcType=DECIMAL},
@@ -164,7 +164,7 @@
         actual_receive_date = #{actualReceiveDate,jdbcType=TIMESTAMP},
       </if>
       <if test="receiveStatus != null" >
-        receive_status = #{receiveStatus,jdbcType=VARCHAR},
+        receive_status = #{receiveStatus,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -174,7 +174,7 @@
     set return_id = #{returnId,jdbcType=INTEGER},
       borrow_id = #{borrowId,jdbcType=INTEGER},
       loan_name = #{loanName,jdbcType=VARCHAR},
-      phase = #{phase,jdbcType=VARCHAR},
+      phase = #{phase,jdbcType=INTEGER},
       receive_money = #{receiveMoney,jdbcType=DECIMAL},
       receive_interest = #{receiveInterest,jdbcType=VARCHAR},
       receive_principal = #{receivePrincipal,jdbcType=DECIMAL},
@@ -182,7 +182,7 @@
       receive_user_id = #{receiveUserId,jdbcType=INTEGER},
       receive_date = #{receiveDate,jdbcType=TIMESTAMP},
       actual_receive_date = #{actualReceiveDate,jdbcType=TIMESTAMP},
-      receive_status = #{receiveStatus,jdbcType=VARCHAR}
+      receive_status = #{receiveStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

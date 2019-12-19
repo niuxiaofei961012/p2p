@@ -5,10 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.p2p.dao.AccountFlowMapper;
 import com.p2p.dao.AccountMapper;
 import com.p2p.dao.RechargeRecordMapper;
-import com.p2p.dto.BidDTO;
-import com.p2p.dto.LoanMarkDTO;
-import com.p2p.dto.UpdateAccountFrobalanceDTO;
-import com.p2p.dto.UpdateLoanMarkStatusTypeDTO;
+import com.p2p.dto.*;
 import com.p2p.entity.*;
 import com.p2p.feign.BidFeign;
 import com.p2p.feign.LoanMarkFeign;
@@ -70,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
             Account afterAccount = accountMapper.selectByPrimaryKey(account.getId());
             if (afterAccount != null) {
                 //生成动账记录
-                AccountFlow accountFlow = AccountFlowUtil.getAccountFlow(afterAccount, "投标",account.getBidMoney());
+                AccountFlow accountFlow = AccountFlowUtil.getAccountFlow(afterAccount, "初步投标成功",account.getBidMoney());
                 int insert = accountFlowMapper.insert(accountFlow);
                 if (insert == 0) {
                     return false;
@@ -100,7 +97,8 @@ public class AccountServiceImpl implements AccountService {
                 //修改成功之后查询募集到的金额是否满足满标情况
                 LoanMarkVO loanMarkById = loanMarkFeign.getLoanMarkById(loanMark.getBorrowSignId());
                 //判断借款金额是否等于募集到的金额
-                if (loanMarkById.getBorrowMoney() == loanMarkById.getAccessMoney()) {
+                System.out.println(loanMarkById);
+                if (loanMarkById.getBorrowMoney().equals(loanMarkById.getAccessMoney())) {
                     //如果达到满标情况,修改借款标状态为满标
                     UpdateLoanMarkStatusTypeDTO updateLoanMarkStatusTypeDTO = new UpdateLoanMarkStatusTypeDTO();
                     updateLoanMarkStatusTypeDTO.setId(loanMark.getBorrowSignId());
@@ -142,7 +140,7 @@ public class AccountServiceImpl implements AccountService {
             //添加动账记录
             if (account != null) {
                 //生成动账记录
-                AccountFlow accountFlow = AccountFlowUtil.getAccountFlow(account, "充值", rechargeRecord.getPayMoney());
+                AccountFlow accountFlow = AccountFlowUtil.getAccountFlow(account, "初步充值成功", rechargeRecord.getPayMoney());
                 int insert = accountFlowMapper.insert(accountFlow);
                 if (insert == 0) {
                     return false;
@@ -173,5 +171,24 @@ public class AccountServiceImpl implements AccountService {
         return accountFlowMapper.insert(accountFlow);
     }
 
+    @Override
+    public boolean updateAccountByBorrowUser(LoanMarkVO loanMarkVO) {
+        //满标 借款人id,已经募集到的金额,所需还的本息,
+        int i = accountMapper.updateAccountByBorrowUser(loanMarkVO.getBorrowUserId(), loanMarkVO.getAccessMoney(), loanMarkVO.getGrossInterest().add(loanMarkVO.getAccessMoney()));
+        if (i>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateAccountByBidUser(UpdateAccountByBidUserIdDTO updateAccountByBidUserIdDTO) {
+        //满标 投标人id,收到的总利息,收到的本金(减少冻结资金)
+        int i = accountMapper.updateAccountByBidUser(updateAccountByBidUserIdDTO.getAccountId(),updateAccountByBidUserIdDTO.getUnreceiveInterest(),updateAccountByBidUserIdDTO.getUnreceivePrincipal());
+        if(i>0){
+            return true;
+        }
+        return false;
+    }
 
 }

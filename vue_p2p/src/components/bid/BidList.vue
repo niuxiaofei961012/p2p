@@ -1,10 +1,10 @@
 <template>
-  <el-main style="width: 1200px;height: 600px">
+  <el-main >
     <h2>投标信息</h2>
     <el-table
       :data="tableData"
       style="width: 100%"
-      max-height="250">
+      >
       <el-table-column
         fixed
         prop="publishTime"

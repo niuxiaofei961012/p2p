@@ -18,7 +18,7 @@ public class LoanServiceImplTest {
 
     @Test
     public void computerMoney() {
-        ComputerMoney computerMoney = new ComputerMoney(new BigDecimal(2000),new BigDecimal(6),5,0);
+        ComputerMoney computerMoney = new ComputerMoney(new BigDecimal(10000),new BigDecimal(6),12,2);
         BigDecimal bigDecimal = loanService.computerMoney(computerMoney);
         System.out.println("需要还的利息是:=============="+bigDecimal);
     }

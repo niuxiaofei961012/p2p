@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 @Transactional
@@ -33,5 +34,10 @@ public class BidRecordServiceImpl implements BidRecordService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<BidRecord> selectBidRecordByBorrowId(Integer borrowId) {
+        return bidRecordMapper.selectBidRecordByBorrowId(borrowId);
     }
 }

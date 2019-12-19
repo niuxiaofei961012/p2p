@@ -33,6 +33,6 @@ public interface LoanMarkMapper {
     @Update("update  t_loan_mark set  access_money =  access_money + #{bidMoney}  where borrow_sign_id=#{id}")
     void updateAccessMoney(@Param("id") Integer id,@Param("bidMoney") BigDecimal bidMoney);
 
-    @Update("update  t_loan_mark set  status_type = #{statusType}  where borrow_sign_id=#{id}")
+    @Update("update  t_loan_mark set  status_type = #{statusType},status=0  where borrow_sign_id=#{id}")
     void updateStatusType(@Param("id") Integer id,@Param("statusType") Integer statusType);
 }

@@ -11,9 +11,11 @@
     <result column="bid_user_id" property="bidUserId" jdbcType="INTEGER" />
     <result column="borrow_user_id" property="borrowUserId" jdbcType="INTEGER" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     bid_id, borrow_id, borrow_name, bid_money, year_rate, bid_time, bid_user_id, borrow_user_id
   </sql>
+
   <select id="getBidRecordList" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
     from t_bid_record
@@ -26,16 +28,26 @@
       </if>
     </where>
   </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_bid_record
     where bid_id = #{bidId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectBidRecordByBorrowId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_bid_record
+    where borrow_id = #{borrowId,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_bid_record
     where bid_id = #{bidId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.p2p.entity.BidRecord" >
     insert into t_bid_record (bid_id, borrow_id, borrow_name, 
       bid_money, year_rate, bid_time, 
@@ -44,6 +56,7 @@
       #{bidMoney,jdbcType=DECIMAL}, #{yearRate,jdbcType=DECIMAL}, #{bidTime,jdbcType=TIMESTAMP},
       #{bidUserId,jdbcType=INTEGER}, #{borrowUserId,jdbcType=INTEGER})
   </insert>
+
   <insert id="insertSelective" parameterType="com.p2p.entity.BidRecord" >
     insert into t_bid_record
     <trim prefix="(" suffix=")" suffixOverrides="," >

@@ -41,7 +41,7 @@ public class LoanController {
     }
 
     /**
-     * 展示借款标信息(类型为审核前的)
+     * 展示借款标信息
      * @param statusType
      * @param pageNo
      * @param pageSize
@@ -74,6 +74,16 @@ public class LoanController {
     @PostMapping("updateStatus")
     public boolean updateStatus(@RequestBody ReceiveBeforeBidAuditDTO receiveBeforeBidAuditDTO){
         return loanService.updateStatus(receiveBeforeBidAuditDTO);
+    }
+
+    /**
+     * 修改满标状态
+     * @param receiveBeforeBidAuditDTO
+     * @return
+     */
+    @PostMapping("fullBidUpdateStatus")
+    public boolean fullBidUpdateStatus(@RequestBody ReceiveBeforeBidAuditDTO receiveBeforeBidAuditDTO){
+        return loanService.fullBidUpdateStatus(receiveBeforeBidAuditDTO);
     }
 
     /**
