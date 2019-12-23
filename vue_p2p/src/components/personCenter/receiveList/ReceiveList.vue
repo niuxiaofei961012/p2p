@@ -64,7 +64,7 @@
 </template>
 <script>
   const axios = require("axios");
-  const ReceiveURL = "http://localhost:10010/p2p/loan_service/";
+  const ReceiveURL = "http://www.p2p.com/p2p/loan_service/";
   export default {
     name: "ReceiveInfo",
     data() {

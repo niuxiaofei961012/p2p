@@ -29,7 +29,7 @@
 
 <script>
   const axios = require("axios");
-  const UserURL  = "http://localhost:10010/p2p/user_service/";
+  const UserURL  = "http://www.p2p.com/p2p/user_service/";
     export default {
         name: "DetialUser",
       data(){

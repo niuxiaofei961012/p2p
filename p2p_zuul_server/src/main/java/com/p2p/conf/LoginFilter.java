@@ -8,12 +8,13 @@ import com.p2p.utils.CookieUtil;
 import com.p2p.utils.RedisService;
 import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-//@Component
+@Component
 public class LoginFilter extends ZuulFilter {
 
     @Autowired

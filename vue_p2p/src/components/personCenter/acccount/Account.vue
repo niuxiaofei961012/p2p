@@ -40,7 +40,7 @@
 
 <script>
   const axios = require("axios");
-  const baseURL  = "http://localhost:10010/p2p/account_service/";
+  const baseURL  = "http://www.p2p.com/p2p/account_service/";
     export default {
         name: "Account",
         data(){

@@ -7,6 +7,7 @@ import com.p2p.dao.UserMapper;
 import com.p2p.entity.Account;
 import com.p2p.entity.LoginVO;
 import com.p2p.entity.User;
+import com.p2p.utils.CookieUtil;
 import com.p2p.utils.Md5Util;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -53,12 +54,12 @@ public class LoginServiceImpl implements LoginService {
         //将登陆的对象转成json串
         String loginJson = JSON.toJSONString(login);
         //将登陆的对象json串存到redis中
-        stringRedisTemplate.opsForValue().set(token, loginJson, 30 * 60, TimeUnit.SECONDS);
+        stringRedisTemplate.opsForValue().set(token, loginJson,CookieUtil.SESSION_EXPIRE_SECONDS, TimeUnit.SECONDS);
         //创建cookie
-        Cookie cookie = new Cookie(UserConstant.USER_COOKIE_CODE, token);
+        Cookie cookie = new Cookie(CookieUtil.COOKIE_NAME_TOKEN, token);
         //设置cookie属性
-        //cookie.setDomain("p2p.com");
-        cookie.setMaxAge(1800);
+        cookie.setDomain("p2p.com");
+        cookie.setMaxAge(CookieUtil.SESSION_EXPIRE_SECONDS);
         cookie.setPath("/");
         //将cookie发送到浏览器
         response.addCookie(cookie);

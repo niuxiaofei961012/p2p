@@ -13,10 +13,8 @@ public class CorsFilterConfig {
     public CorsFilter corsFilter(){
         CorsConfiguration config = new CorsConfiguration();
         //1) 允许的域,不要写*，否则cookie就无法使用了
-        config.addAllowedOrigin("http://www.p2p.cn:9090");
-        config.addAllowedOrigin("http://www.p2p.cn");
-        config.addAllowedOrigin("http://localhost:9090");
-        config.addAllowedOrigin("http://localhost:9191");
+        config.addAllowedOrigin("http://front.p2p.com");
+        config.addAllowedOrigin("http://back.p2p.com");
 
         //2) 是否发送Cookie信息
         config.setAllowCredentials(true);

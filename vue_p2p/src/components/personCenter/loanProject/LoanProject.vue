@@ -52,7 +52,7 @@
 </template>
 <script>
   const axios = require("axios");
-  const BorrowURL  = "http://localhost:10010/p2p/loan_service/";
+  const BorrowURL  = "http://www.p2p.com/p2p/loan_service/";
   export default {
     name: "LoanProject",
     data() {

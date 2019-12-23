@@ -20,52 +20,52 @@
 
 <script>
   const axios = require("axios");
-  const baseURL  = "http://localhost:10010/p2p/user_service/";
+  const baseURL = "http://www.p2p.com/p2p/user_service/";
   axios.defaults.withCredentials = true;
   export default {
     name: "Login",
-    data(){
+    data() {
       return {
-        loginForm:{},
-        User:{}
+        loginForm: {},
+        User: {}
       }
     },
-    methods:{
-      login(){
-        if(this.loginForm.userUsername==null){
+    methods: {
+      login() {
+        if (this.loginForm.userUsername == null) {
           this.$message("请输入用户名")
           return;
         }
-        if(this.loginForm.userPassword==null){
+        if (this.loginForm.userPassword == null) {
           this.$message("请输入密码")
           return;
         }
         let self = this;
         axios({
-          url:baseURL+"p2p/login",
-          method:"post",
-          data:this.loginForm
+          url: baseURL + "p2p/login",
+          method: "post",
+          data: this.loginForm
         }).then(function (res) {
-          if(res.data.ok){
+          if (res.data.ok) {
             self.User = res.data.ok
             let user = JSON.parse(self.User);
-            window.localStorage.setItem("userId",user.id);
-            window.localStorage.setItem("userName",user.userUsername);
+            window.localStorage.setItem("userId", user.id);
+            window.localStorage.setItem("userName", user.userUsername);
             self.$message("登录成功")
             self.$router.push("/home/");
-          }else if(res.data.userName){
+          } else if (res.data.userName) {
             self.$message(res.data.userName)
-          }else{
+          } else {
             self.$message(res.data.userPassword)
           }
         })
 
       },
-      register(){
+      register() {
         this.$router.push("/register/");
       }
     },
-    created(){
+    created() {
 
     }
   }

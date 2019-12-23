@@ -27,7 +27,7 @@
 <script>
   const axios = require("axios");
   axios.defaults.withCredentials = true;
-  const baseURL = "http://localhost:10010/p2p/user_service/";
+  const baseURL = "http://www.p2p.com/p2p/user_service/";
   export default {
     name: "Head",
     data() {

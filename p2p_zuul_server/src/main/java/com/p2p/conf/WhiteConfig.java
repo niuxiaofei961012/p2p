@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-//@Component
-//@ConfigurationProperties(prefix = "filter")
+@Component
+@ConfigurationProperties(prefix = "filter")
 public class WhiteConfig {
 
     List<String> whiteList;
