@@ -38,6 +38,7 @@
     a.borrow_sign_id, a.borrow_name, a.borrow_user_id, a.borrow_money, a.year_rate, a.return_monthes,
    a.borrow_use, a.payment_method, a.borrow_days, a.access_money, a.publish_time,a.gross_interest,a.status,a.status_type,b.user_username
   </sql>
+
   <select id="getLoanMarkList" resultMap="LoanMarkVO">
     select
     <include refid="Base_Column_List" />
@@ -46,14 +47,23 @@
     on a.borrow_user_id = b.id
     where  a.status_type = #{statusType,jdbcType=INTEGER}
   </select>
+
   <select id="getLoanMarkListByStatus" resultMap="LoanMarkVO">
     select
     <include refid="Base_Column_List" />
     from t_loan_mark a
     left join t_user b
     on a.borrow_user_id = b.id
-    where  a.status = #{status,jdbcType=INTEGER} and a.borrow_user_id != #{userId,jdbcType=INTEGER}
+    <where>
+      <if test="status != null and status != '' ">
+        and  a.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="userId != null and userId != '' ">
+        and  a.borrow_user_id != #{userId,jdbcType=INTEGER}
+      </if>
+    </where>
   </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="LoanMarkVO">
     select 
     <include refid="Base_Column_List" />
@@ -62,6 +72,23 @@
     on a.borrow_user_id = b.id
     where a.borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}
   </select>
+
+  <select id="getLoanMarkLists" resultMap="LoanMarkVO">
+    select
+    <include refid="Base_Column_List" />
+    from t_loan_mark a
+    left join t_user b
+    on a.borrow_user_id = b.id
+    where a.borrow_user_id = #{loanMarkDTO.borrowUserId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getLoanMarkListsByBidUser" resultMap="LoanMarkVO">
+    select a.* from t_loan_mark a
+    left JOIN t_bid_record b
+    on a.borrow_sign_id = b.borrow_id
+    where b.bid_user_id = #{loanMarkDTO.bidUserId,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_loan_mark
     where borrow_sign_id = #{borrowSignId,jdbcType=INTEGER}

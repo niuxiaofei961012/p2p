@@ -1,5 +1,9 @@
 package com.p2p.dao;
 
+import com.github.pagehelper.PageInfo;
+import com.p2p.dto.LoanMarkDTO;
+import com.p2p.dto.ReceivePlanDTO;
+import com.p2p.entity.ReceivePlan;
 import com.p2p.vo.LoanMarkVO;
 import com.p2p.entity.LoanMark;
 import org.apache.ibatis.annotations.Mapper;
@@ -35,4 +39,10 @@ public interface LoanMarkMapper {
 
     @Update("update  t_loan_mark set  status_type = #{statusType},status=0  where borrow_sign_id=#{id}")
     void updateStatusType(@Param("id") Integer id,@Param("statusType") Integer statusType);
+
+    List<LoanMarkVO> getLoanMarkLists(@Param("loanMarkDTO") LoanMarkDTO loanMarkDTO);
+
+    List<LoanMarkVO> getLoanMarkListsByBidUser(@Param("loanMarkDTO")LoanMarkDTO loanMarkDTO);
+
+
 }

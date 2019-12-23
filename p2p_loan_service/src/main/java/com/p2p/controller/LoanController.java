@@ -1,11 +1,9 @@
 package com.p2p.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.p2p.dto.UpdateLoanMarkStatusTypeDTO;
+import com.p2p.dto.*;
+import com.p2p.entity.ReceivePlan;
 import com.p2p.vo.LoanMarkVO;
-import com.p2p.dto.ComputerMoney;
-import com.p2p.dto.LoanMarkDTO;
-import com.p2p.dto.ReceiveBeforeBidAuditDTO;
 import com.p2p.entity.LoanMark;
 import com.p2p.service.LoanService;
 import org.apache.ibatis.annotations.Param;
@@ -115,4 +113,26 @@ public class LoanController {
     public boolean updateStatusType(@RequestBody UpdateLoanMarkStatusTypeDTO updateLoanMarkStatusTypeDTO){
         return loanService.updateStatusType(updateLoanMarkStatusTypeDTO);
     }
+
+
+    /**
+     * 展示个人借款信息+分页+查询
+     * @param loanMarkDTO
+     * @return
+     */
+    @PostMapping("getLoanMarkLists")
+    public PageInfo<LoanMarkVO> getLoanMarkLists(@RequestBody LoanMarkDTO loanMarkDTO){
+        return loanService.getLoanMarkLists(loanMarkDTO);
+    }
+    /**
+     * 展示个人投标信息+分页+查询
+     * @param loanMarkDTO
+     * @return
+     */
+    @PostMapping("getLoanMarkListsByBidUser")
+    public PageInfo<LoanMarkVO> getLoanMarkListsByBidUser(@RequestBody LoanMarkDTO loanMarkDTO){
+        return loanService.getLoanMarkListsByBidUser(loanMarkDTO);
+    }
+
+
 }

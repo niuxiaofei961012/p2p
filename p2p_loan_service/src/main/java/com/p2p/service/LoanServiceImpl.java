@@ -282,4 +282,18 @@ public class LoanServiceImpl implements LoanService {
         return false;
     }
 
+    @Override
+    public PageInfo<LoanMarkVO> getLoanMarkLists(LoanMarkDTO loanMarkDTO) {
+        PageHelper.startPage(loanMarkDTO.getPageNo(),loanMarkDTO.getPageSize());
+        return new PageInfo<>(loanMarkMapper.getLoanMarkLists(loanMarkDTO));
+    }
+
+    @Override
+    public PageInfo<LoanMarkVO> getLoanMarkListsByBidUser(LoanMarkDTO loanMarkDTO) {
+        PageHelper.startPage(loanMarkDTO.getPageNo(),loanMarkDTO.getPageSize());
+        return new PageInfo<>(loanMarkMapper.getLoanMarkListsByBidUser(loanMarkDTO));
+    }
+
+
+
 }

@@ -145,6 +145,7 @@
           self.minBidMoney=Math.floor(self.oneInfoFromBid.borrowMoney/self.oneInfoFromBid.returnMonthes);
           self.needMoney=self.oneInfoFromBid.borrowMoney-self.oneInfoFromBid.accessMoney
           self.curStartTime = self.oneInfoFromBid.endTime
+          console.log(self.curStartTime)
           self.countTime()
         })
       },

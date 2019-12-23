@@ -24,6 +24,12 @@
     from t_return_plan
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectReturnLists" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_return_plan
+    where return_user_id = #{returnPlanDTO.returnUserId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_return_plan
     where id = #{id,jdbcType=INTEGER}

@@ -1,7 +1,11 @@
 package com.p2p.dao;
 
+import com.p2p.dto.ReturnPlanDTO;
 import com.p2p.entity.ReturnPlan;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface ReturnPlanMapper {
@@ -16,4 +20,6 @@ public interface ReturnPlanMapper {
     int updateByPrimaryKeySelective(ReturnPlan record);
 
     int updateByPrimaryKey(ReturnPlan record);
+
+    List<ReturnPlan> selectReturnLists(@Param("returnPlanDTO") ReturnPlanDTO returnPlanDTO);
 }

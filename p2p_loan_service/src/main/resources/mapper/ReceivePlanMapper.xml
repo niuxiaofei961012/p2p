@@ -26,6 +26,12 @@
     from t_receive_plan
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectReceiveLists" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_receive_plan
+    where receive_user_id = #{receivePlanDTO.receiveUserId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_receive_plan
     where id = #{id,jdbcType=INTEGER}
