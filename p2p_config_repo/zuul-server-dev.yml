@@ -35,6 +35,7 @@ filter:
   whiteList:
     - /p2p/login
     - /p2p/menegerLogin
+    - /p2p/loginJWT
 
 #  ratelimit:
 #    key-prefix: user-service #请求的key的前缀
