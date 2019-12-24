@@ -9,6 +9,7 @@ import java.util.Date;
  */
 @Data
 public class User {
+    private Long jwtId;
     //主键id
     private Integer id;
     //用户名
@@ -47,6 +48,11 @@ public class User {
     }
 
     public User() {
+    }
+
+    public User(Long jwtId, String userUsername) {
+        this.jwtId = jwtId;
+        this.userUsername = userUsername;
     }
 }
 

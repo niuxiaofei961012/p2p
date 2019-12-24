@@ -42,7 +42,7 @@
         }
         let self = this;
         axios({
-          url: baseURL + "p2p/login",
+          url: baseURL + "p2p/loginJWT",
           method: "post",
           data: this.loginForm
         }).then(function (res) {

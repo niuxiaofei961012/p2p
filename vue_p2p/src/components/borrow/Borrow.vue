@@ -59,7 +59,7 @@
       </el-form-item>
 
       <el-form-item label="需还利息">
-        <el-input :disabled="true" v-model="form.grossInterest"></el-input>
+        <el-input :disabled="true" v-model="form.interest"></el-input>
       </el-form-item>
 
       <el-form-item>
@@ -86,6 +86,7 @@
           //计算利息
           computerMoney(){
             let self = this;
+            self.form.interest=""
             axios({
               url:BorrowURL+"loan/computerMoney",
               method:"post",

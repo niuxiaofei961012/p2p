@@ -2,12 +2,14 @@ package com.p2p.service;
 
 import com.alibaba.fastjson.JSON;
 import com.p2p.common.UserConstant;
+import com.p2p.conf.JwtProperties;
 import com.p2p.dao.AccountMapper;
 import com.p2p.dao.UserMapper;
 import com.p2p.entity.Account;
 import com.p2p.entity.LoginVO;
 import com.p2p.entity.User;
 import com.p2p.utils.CookieUtil;
+import com.p2p.utils.JwtUtils;
 import com.p2p.utils.Md5Util;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -109,5 +112,23 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public User getUserInfoById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public String loginJWT(LoginVO loginVO, PrivateKey privateKey) {
+        User login = userMapper.login(loginVO.getUserUsername());
+        String token = "";
+        if (login == null) {
+            throw new RuntimeException("用户名不存在");
+        }
+        if (!login.getUserPassword().equals(Md5Util.getMd5(loginVO.getUserPassword()))) {
+            throw new RuntimeException("密码错误");
+        }
+        try {
+            token  = JwtUtils.generateToken(login,privateKey,30);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return token;
     }
 }
