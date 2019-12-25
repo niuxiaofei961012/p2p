@@ -15,8 +15,9 @@ public class RabbitMqReceive {
     @Autowired
     private ObjectMapper objectMapper;
 
+    //@RabbitListener(queues = "queue")
     @RabbitListener(queuesToDeclare = @Queue("myQueue"))
-    public void ReceiveMessage(byte[] message){
+    public void receiveMessage(byte[] message){
         log.info("message================="+ SerializationUtils.deserialize(message));
     }
     }
