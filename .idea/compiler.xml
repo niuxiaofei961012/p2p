@@ -16,6 +16,7 @@
         <module name="p2p_eureka_server" />
         <module name="p2p_loan_service" />
         <module name="p2p_mybatis_generator" />
+        <module name="p2p_rabbitMQ" />
         <module name="p2p_user_service" />
         <module name="p2p_zuul_server" />
       </profile>

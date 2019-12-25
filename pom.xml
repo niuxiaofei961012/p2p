@@ -18,6 +18,7 @@
         <module>p2p_loan_service</module>
         <module>p2p_bid_service</module>
         <module>p2p_audit_service</module>
+        <module>p2p_rabbitMQ</module>
     </modules>
 
     <packaging>pom</packaging>

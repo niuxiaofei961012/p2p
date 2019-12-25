@@ -21,7 +21,7 @@ public class JwtUtils {
      * @return
      * @throws Exception
      */
-    public static String generateToken(User user, PrivateKey privateKey, int expireMinutes) throws Exception {
+    public static String generateToken(User user, PrivateKey privateKey, long expireMinutes) throws Exception {
         Date date = new Date();
         long time = date.getTime();
         time += expireMinutes;
@@ -42,7 +42,7 @@ public class JwtUtils {
      * @return
      * @throws Exception
      */
-    public static String generateToken(User user, byte[] privateKey, int expireMinutes) throws Exception {
+    public static String generateToken(User user, byte[] privateKey, long expireMinutes) throws Exception {
         Date date = new Date();
         long time = date.getTime();
         time = time +expireMinutes;

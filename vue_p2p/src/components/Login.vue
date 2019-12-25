@@ -46,7 +46,10 @@
           method: "post",
           data: this.loginForm
         }).then(function (res) {
-          if (res.data.ok) {
+          console.log(res)
+          console.log(res.data)
+            self.$router.push('/home');
+         /* if (res.data.ok) {
             self.User = res.data.ok
             let user = JSON.parse(self.User);
             window.localStorage.setItem("userId", user.id);
@@ -57,7 +60,7 @@
             self.$message(res.data.userName)
           } else {
             self.$message(res.data.userPassword)
-          }
+          }*/
         })
 
       },

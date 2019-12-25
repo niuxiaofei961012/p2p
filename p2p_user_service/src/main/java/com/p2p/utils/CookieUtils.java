@@ -98,7 +98,7 @@ public class CookieUtils {
      * 设置Cookie的值 不设置生效时间,但编码
      */
     public static void setCookie(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue, boolean isEncode) {
-        setCookie(request, response, cookieName, cookieValue, -1, isEncode);
+        setCookie(request, response, cookieName, cookieValue, 1800, isEncode);
     }
 
     /**
@@ -139,9 +139,9 @@ public class CookieUtils {
             if (cookieMaxage > 0)
                 cookie.setMaxAge(cookieMaxage);
             if (null != request)// 设置域名的cookie
-                cookie.setDomain(getDomainName(request));
-            cookie.setPath("/");
-            response.addCookie(cookie);
+                cookie.setDomain("p2p.com");
+                cookie.setPath("/");
+                response.addCookie(cookie);
         } catch (Exception e) {
             logger.error("Cookie Encode Error.", e);
         }

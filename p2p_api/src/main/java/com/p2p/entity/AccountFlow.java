@@ -2,10 +2,12 @@ package com.p2p.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 @Data
-public class AccountFlow {
+public class AccountFlow implements Serializable {
+    private static final long serialVersionUID = 6890467106404674616L;
     private Integer recordId;
     //动账时间
     private Date recordDate;

@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sun.applet.Main;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -98,14 +99,13 @@ public class LoginController {
     /**
      * 登录授权功能
      *
-     * @param username
-     * @param password
+     * @param loginVO
      * @return
      */
     @PostMapping("loginJWT")
-    public ResponseEntity<Void> login(@RequestParam("username") String username,
-                                      @RequestParam("password") String password,
+    public ResponseEntity<Void> login(@RequestBody LoginVO loginVO,
                                       HttpServletResponse response, HttpServletRequest request)  throws Exception {
+
 
         // rsa.pub文件名随意，例如：rsa.pub、rsa.io、pub.opp、rsapub.tyrf、rsa.txt、、、、
         String pubKeyPath = "D:\\rsa\\rsa.pub";
@@ -113,11 +113,9 @@ public class LoginController {
         /**************解密**************/
         PrivateKey privateKey = RsaUtils.getPrivateKey(priKeyPath);
 
-        LoginVO loginVO = new LoginVO();
-        loginVO.setUserUsername(username);
-        loginVO.setUserPassword(password);
-//        生成token
+//      生成token
         String token = loginService.loginJWT(loginVO, privateKey);
+
         try {
             RsaUtils.generateKey(pubKeyPath, priKeyPath, token);
         } catch (Exception e) {
@@ -127,8 +125,9 @@ public class LoginController {
         if (StringUtils.isBlank(token)) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+        response.setHeader("token",token);
 //        写入cookie token
-        CookieUtils.setCookie(request, response, JwtConstans.COOKIE_NAME, token, false);
+//      CookieUtils.setCookie(request, response, JwtConstans.COOKIE_NAME, token, false);
 //      response.addCookie(new Cookie(JwtConstans.COOKIE_NAME,token));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
@@ -143,11 +142,13 @@ public class LoginController {
     public ResponseEntity<User> verifyUser(@CookieValue(JwtConstans.COOKIE_NAME) String token,
                                            HttpServletRequest request,
                                            HttpServletResponse response) {
+        String pubKeyPath = "D:\\rsa\\rsa.pub";
+        String priKeyPath = "D:\\rsa\\rsa.pri";
 
         try {
-            User userInfo = JwtUtils.getInfoFromToken(token, prop.getPublicKey());
+            User userInfo = JwtUtils.getInfoFromToken(token, RsaUtils.getPublicKey(pubKeyPath));
             // 解析成功要重新生成token
-            String newToken = JwtUtils.generateToken(userInfo, prop.getPrivateKey(), prop.getExpire());
+            String newToken = JwtUtils.generateToken(userInfo, RsaUtils.getPrivateKey(priKeyPath),300000);
             // 更新cookie中的token
             CookieUtils.setCookie(request, response, JwtConstans.COOKIE_NAME, newToken, false);
 
