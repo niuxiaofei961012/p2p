@@ -125,7 +125,7 @@ public class LoginServiceImpl implements LoginService {
             throw new RuntimeException("密码错误");
         }
         try {
-            token  = JwtUtils.generateToken(login,privateKey,300000);
+            token  = JwtUtils.generateToken(login,privateKey,30);
         }catch (Exception e){
             e.printStackTrace();
         }

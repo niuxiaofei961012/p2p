@@ -148,7 +148,7 @@ public class LoginController {
         try {
             User userInfo = JwtUtils.getInfoFromToken(token, RsaUtils.getPublicKey(pubKeyPath));
             // 解析成功要重新生成token
-            String newToken = JwtUtils.generateToken(userInfo, RsaUtils.getPrivateKey(priKeyPath),300000);
+            String newToken = JwtUtils.generateToken(userInfo, RsaUtils.getPrivateKey(priKeyPath),30);
             // 更新cookie中的token
             CookieUtils.setCookie(request, response, JwtConstans.COOKIE_NAME, newToken, false);
 

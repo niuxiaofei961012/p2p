@@ -18,7 +18,7 @@ public class VerifyJwtTest {
         try {
             User userInfo = JwtUtils.getInfoFromToken("eyJhbGciOiJSUzI1NiJ9.eyJ1c2VybmFtZSI6IuW8oOS4iSIsImV4cCI6MTU3NzI0NTk2OX0.rrrPMAZ3wFmJ79uj4XV8Qp-q8DnNAv5xolU2Jvve2KptL81s2OQzfFa1A1hxXDFE8fmL3aGSjko5MUM-04sY2MtAJ8rLH_43x3ZhbMRkXkr54xAhpFqSp0HyMbkX7CJ-FpdZYEXz1bqvOXyKxFGqIYji-0dgkVLK_p1ti_HnJxzhSDqLJL40hwPfOy3kmOfxB3USdeWr9npPC1j7AJSQvANpCl2v0Fc3ars4rIasfmstY6yAgWPBEw-vL4Yyvj82pgEW7vLyKVOgdrVj4e-Z5qdFtogbYDvu5jDSSmOKhMsfjkxu0G04XGIkGnOosXCGpf7QAEolEPvBkQWAgoBwzA", RsaUtils.getPublicKey(pubKeyPath));
             // 解析成功要重新生成token
-            String newToken = JwtUtils.generateToken(userInfo, RsaUtils.getPrivateKey(priKeyPath),300000);
+            String newToken = JwtUtils.generateToken(userInfo, RsaUtils.getPrivateKey(priKeyPath),30);
             System.out.println(userInfo);
             System.out.println(newToken);
         } catch (Exception e) {

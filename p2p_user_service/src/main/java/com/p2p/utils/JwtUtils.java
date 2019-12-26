@@ -6,6 +6,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.joda.time.DateTime;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -21,14 +22,11 @@ public class JwtUtils {
      * @return
      * @throws Exception
      */
-    public static String generateToken(User user, PrivateKey privateKey, long expireMinutes) throws Exception {
-        Date date = new Date();
-        long time = date.getTime();
-        time += expireMinutes;
+    public static String generateToken(User user, PrivateKey privateKey, int expireMinutes) throws Exception {
         return Jwts.builder()
                 .claim(JwtConstans.JWT_KEY_ID, user.getJwtId())
                 .claim(JwtConstans.JWT_KEY_USER_NAME, user.getUserUsername())
-                .setExpiration(new Date(time))
+                .setExpiration(DateTime.now().plusMinutes(expireMinutes).toDate())
                 .signWith(SignatureAlgorithm.RS256, privateKey)
                 .compact();
     }
@@ -42,14 +40,11 @@ public class JwtUtils {
      * @return
      * @throws Exception
      */
-    public static String generateToken(User user, byte[] privateKey, long expireMinutes) throws Exception {
-        Date date = new Date();
-        long time = date.getTime();
-        time = time +expireMinutes;
+    public static String generateToken(User user, byte[] privateKey, int expireMinutes) throws Exception {
         return Jwts.builder()
                 .claim(JwtConstans.JWT_KEY_ID, user.getJwtId())
                 .claim(JwtConstans.JWT_KEY_USER_NAME, user.getUserUsername())
-                .setExpiration(new Date(time))
+                .setExpiration(DateTime.now().plusMinutes(expireMinutes).toDate())
                 .signWith(SignatureAlgorithm.RS256, RsaUtils.getPrivateKey(privateKey))
                 .compact();
     }
