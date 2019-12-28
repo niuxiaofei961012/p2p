@@ -127,7 +127,7 @@ public class LoginController {
         }
         response.setHeader("token",token);
 //        写入cookie token
-//      CookieUtils.setCookie(request, response, JwtConstans.COOKIE_NAME, token, false);
+      CookieUtils.setCookie(request, response, JwtConstans.COOKIE_NAME, token, false);
 //      response.addCookie(new Cookie(JwtConstans.COOKIE_NAME,token));
         return ResponseEntity.status(HttpStatus.OK).build();
     }

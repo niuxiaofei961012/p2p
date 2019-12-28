@@ -42,14 +42,14 @@
         }
         let self = this;
         axios({
-          url: baseURL + "p2p/loginJWT",
+          url: baseURL + "p2p/login",
           method: "post",
           data: this.loginForm
         }).then(function (res) {
-          console.log(res)
-          console.log(res.data)
-            self.$router.push('/home');
-         /* if (res.data.ok) {
+          // if(res){
+          //   self.$router.push('/home');
+          // }
+         if (res.data) {
             self.User = res.data.ok
             let user = JSON.parse(self.User);
             window.localStorage.setItem("userId", user.id);
@@ -60,7 +60,7 @@
             self.$message(res.data.userName)
           } else {
             self.$message(res.data.userPassword)
-          }*/
+          }
         })
 
       },

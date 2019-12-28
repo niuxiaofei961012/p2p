@@ -15,6 +15,7 @@ public class CorsFilterConfig {
         //1) 允许的域,不要写*，否则cookie就无法使用了
         config.addAllowedOrigin("http://front.p2p.com");
         config.addAllowedOrigin("http://back.p2p.com");
+        config.addAllowedOrigin("http://www.p2p.com");
 
         //2) 是否发送Cookie信息
         config.setAllowCredentials(true);
