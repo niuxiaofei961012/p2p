@@ -191,4 +191,10 @@ public class AccountServiceImpl implements AccountService {
         return false;
     }
 
+    @Override
+    public boolean updateByPrimaryKeySelective(Account account) {
+        int i = accountMapper.updateByPrimaryKeySelective(account);
+        return i>0;
+    }
+
 }

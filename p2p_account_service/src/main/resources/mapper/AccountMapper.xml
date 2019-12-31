@@ -11,10 +11,11 @@
     <result column="credit_limit" property="creditLimit" jdbcType="DECIMAL" />
     <result column="remain_credit_limit" property="remainCreditLimit" jdbcType="DECIMAL" />
     <result column="trade_password" property="tradePassword" jdbcType="VARCHAR" />
+    <result column="bit_state" property="bitState" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, accoubt_avbalance, accoubt_frobalance, unreceive_principal, unreceive_interest, 
-    unreceive_money, credit_limit, remain_credit_limit, trade_password
+    unreceive_money, credit_limit, remain_credit_limit, trade_password ,bit_state
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -36,11 +37,11 @@
     insert into t_account (id, accoubt_avbalance, accoubt_frobalance, 
       unreceive_principal, unreceive_interest, 
       unreceive_money, credit_limit, remain_credit_limit, 
-      trade_password)
+      trade_password,bit_state)
     values (#{id,jdbcType=INTEGER}, #{accoubtAvbalance,jdbcType=DECIMAL}, #{accoubtFrobalance,jdbcType=DECIMAL}, 
       #{unreceivePrincipal,jdbcType=DECIMAL}, #{unreceiveInterest,jdbcType=DECIMAL}, 
       #{unreceiveMoney,jdbcType=DECIMAL}, #{creditLimit,jdbcType=DECIMAL}, #{remainCreditLimit,jdbcType=DECIMAL}, 
-      #{tradePassword,jdbcType=VARCHAR})
+      #{tradePassword,jdbcType=VARCHAR},#{bitState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.p2p.entity.Account" >
     insert into t_account
@@ -72,6 +73,9 @@
       <if test="tradePassword != null" >
         trade_password,
       </if>
+      <if test="bitState != null" >
+        bit_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -100,6 +104,9 @@
       </if>
       <if test="tradePassword != null" >
         #{tradePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="bitState != null" >
+        #{bitState,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -130,6 +137,9 @@
       <if test="tradePassword != null" >
         trade_password = #{tradePassword,jdbcType=VARCHAR},
       </if>
+      <if test="bitState != null" >
+        bit_state = #{bitState,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -142,7 +152,8 @@
       unreceive_money = #{unreceiveMoney,jdbcType=DECIMAL},
       credit_limit = #{creditLimit,jdbcType=DECIMAL},
       remain_credit_limit = #{remainCreditLimit,jdbcType=DECIMAL},
-      trade_password = #{tradePassword,jdbcType=VARCHAR}
+      trade_password = #{tradePassword,jdbcType=VARCHAR},
+      bit_state = #{bitState,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

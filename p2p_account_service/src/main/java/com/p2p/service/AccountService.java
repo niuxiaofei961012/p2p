@@ -28,4 +28,6 @@ public interface AccountService {
     boolean updateAccountByBorrowUser(LoanMarkVO loanMarkVO);
 
     boolean updateAccountByBidUser(UpdateAccountByBidUserIdDTO updateAccountByBidUserIdDTO);
+
+    boolean updateByPrimaryKeySelective(Account account);
 }
