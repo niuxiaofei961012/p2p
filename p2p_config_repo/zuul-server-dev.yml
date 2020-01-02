@@ -31,6 +31,10 @@ zuul:
     bid-service:
       serviceId: bid-service
       path: /p2p/bid_service/**
+
+    pay-service:
+      serviceId: pay-service
+      path: /p2p/pay_service/**
 filter:
   whiteList:
     - /p2p/login
