@@ -19,6 +19,7 @@
         <module>p2p_bid_service</module>
         <module>p2p_audit_service</module>
         <module>p2p_rabbitMQ</module>
+        <module>p2p_pay</module>
     </modules>
 
     <packaging>pom</packaging>

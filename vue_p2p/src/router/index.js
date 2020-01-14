@@ -9,6 +9,7 @@ import Borrow from '@/components/borrow/Borrow';
 import BidList from '@/components/bid/BidList';
 import OneInfoFromBid from '@/components/bid/OneInfoFromBid';
 import Recharge from '@/components/personCenter/acccount/Recharge';
+import pay from '@/components/pay/pay';
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register,
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: pay,
     },
     {
       path: '/recharge/:id',
